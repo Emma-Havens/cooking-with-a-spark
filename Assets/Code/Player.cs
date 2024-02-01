@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    float yaw = 0.0f;
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
+
+    private float yawSpeed = 2.0f;
+    private float pitchSpeed = 2.0f;
 
     private Rigidbody playerRB;
 
     private float MoveSpeed = 10.0f;
-    private float YawSpeed = 60.0f;
-
-    //public Vector3 MousePos = Vector3.zero;
 
     void Start()
     {
@@ -23,8 +24,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-
-        //MousePos = Input.mousePosition;
+        yaw += yawSpeed * Input.GetAxis("Mouse X");
+        pitch -= pitchSpeed * Input.GetAxis("Mouse Y");
 
     }
 
@@ -39,20 +40,17 @@ public class Player : MonoBehaviour
         float horizontal = 0.0f;
         float vertical = 0.0f;
 
-        
-
         if (Input.GetKey(KeyCode.A)) horizontal = -MoveSpeed * Time.fixedDeltaTime;
         else if (Input.GetKey(KeyCode.D)) horizontal = MoveSpeed * Time.fixedDeltaTime;
 
         if (Input.GetKey(KeyCode.S)) vertical = -MoveSpeed * Time.fixedDeltaTime;
         else if (Input.GetKey(KeyCode.W)) vertical = MoveSpeed * Time.fixedDeltaTime;
 
-        if (Input.GetKey(KeyCode.LeftArrow)) yaw += -YawSpeed * Time.fixedDeltaTime;
-        else if (Input.GetKey(KeyCode.RightArrow)) yaw += YawSpeed * Time.fixedDeltaTime;
+        Vector3 forward = new Vector3(transform.forward.x, 0, transform.forward.z);
+        Vector3 right = new Vector3(transform.right.x, 0, transform.right.z);
 
-
-        playerRB.MoveRotation(Quaternion.Euler(0, yaw, 0));
-        playerRB.MovePosition(transform.position + (transform.right * horizontal) + (transform.forward * vertical));
+        playerRB.MoveRotation(Quaternion.Euler(pitch, yaw, 0));
+        playerRB.MovePosition(transform.position + (right * horizontal) + (forward * vertical));
 
     }
 
