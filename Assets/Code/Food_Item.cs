@@ -40,13 +40,13 @@ public class Food_Item : Hand_Item
     }
 
     // appliances call this to cook or chop food items
-    void Process_food()
+    public void Process_food()
     {
         state = State.Processed;
     }
 
     // appliances call this to burn or ruin food items
-    void Ruin_food()
+    public void Ruin_food()
     {
         state = State.Ruined;
     }
