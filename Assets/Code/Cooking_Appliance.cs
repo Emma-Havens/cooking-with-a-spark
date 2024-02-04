@@ -37,12 +37,12 @@ public class Cooking_appliance : MonoBehaviour
         if (cook_progress >= ruined)
         {
             Debug.Log("food ruined!");
-            cooking_item.state = State.Ruined;
+            cooking_item.Ruin_food();
         }
         else if (cook_progress >= processed)
         {
             Debug.Log("food cooked!");
-            cooking_item.state = State.Processed;
+           cooking_item.Process_food();
         }
     }
 
@@ -81,14 +81,12 @@ public class Cooking_appliance : MonoBehaviour
     {
         if (within_range == true)
         {
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && player_hand.In_hand() != null)
             {
                 Debug.Log("appliance use detected");
                 if (cooking_item == null)
                 {
-                    cooking_item = player_hand.item as Food_Item;
-                    player_hand.item = null;
+                    cooking_item = player_hand.Use_item() as Food_Item;
                     Debug.Log("beginning cooking");
                     start_cooking(cooking_item);
                 }
