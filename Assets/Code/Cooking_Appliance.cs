@@ -88,6 +88,7 @@ public class Cooking_appliance : MonoBehaviour
                 if (cooking_item == null)
                 {
                     cooking_item = player_hand.item as Food_Item;
+                    player_hand.item = null;
                     Debug.Log("beginning cooking");
                     start_cooking(cooking_item);
                 }
