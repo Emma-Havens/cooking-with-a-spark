@@ -10,7 +10,8 @@ public class Cooking_appliance : MonoBehaviour
 
     Food_Item cooking_item = null;
 
-    int cook_progress = 0;
+    //public so you can watch in editor, and updating progress bar
+    public int cook_progress = 0;
 
     //how much progress is made per fixed_update (50/s)
     public int cook_speed = 1;
@@ -35,10 +36,12 @@ public class Cooking_appliance : MonoBehaviour
 
         if (cook_progress >= ruined)
         {
+            Debug.Log("food ruined!");
             cooking_item.state = State.Ruined;
         }
         else if (cook_progress >= processed)
         {
+            Debug.Log("food cooked!");
             cooking_item.state = State.Processed;
         }
     }
@@ -52,13 +55,62 @@ public class Cooking_appliance : MonoBehaviour
     }
 
     //called by player, taking out the item and resetting progress
-    public Food_Item stop_cooking() {
+    //should return Food_Item
+    public void stop_cooking() {
 
         cook_progress = 0;
 
         Food_Item temp_item = cooking_item;
         cooking_item = null;
 
-        return temp_item;
+        //return temp_item;
+        player_hand.item = temp_item;
+    }
+
+
+    //THE FOLLOWING SHOULD BE REMOVED IN FAVOR OF VISION SELECTION WITH RAYCAST
+    private bool within_range = false;
+    private Hand player_hand = null;
+
+    private void Start()
+    {
+        player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
+    }
+
+    void Update()
+    {
+        if (within_range == true)
+        {
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("appliance use detected");
+                if (cooking_item == null)
+                {
+                    cooking_item = player_hand.item as Food_Item;
+                    Debug.Log("beginning cooking");
+                    start_cooking(cooking_item);
+                }
+                else
+                {
+                    Debug.Log("ending cooking");
+                    stop_cooking();
+                }
+            }
+        }
+    }
+
+    // player is close enough to use appliance
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("press \'e\' to use appliance");
+        within_range = true;
+    }
+
+    // player is no longer close enough to use appliance
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("appliance out of range");
+        within_range = false;
     }
 }

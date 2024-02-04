@@ -650,6 +650,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7529479839125749591, guid: c8f3b617163c34fa7a953ad6c5dd4389, type: 3}
+      propertyPath: m_Size.x
+      value: 8.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7529479839125749591, guid: c8f3b617163c34fa7a953ad6c5dd4389, type: 3}
+      propertyPath: m_Size.z
+      value: 8.5
+      objectReference: {fileID: 0}
     - target: {fileID: 757534221377574476, guid: c8f3b617163c34fa7a953ad6c5dd4389, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.44
@@ -660,7 +668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 757534221377574476, guid: c8f3b617163c34fa7a953ad6c5dd4389, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -9.98
       objectReference: {fileID: 0}
     - target: {fileID: 757534221377574476, guid: c8f3b617163c34fa7a953ad6c5dd4389, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1114,6 +1122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d14632212cd497cb44255427f741e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
 --- !u!1001 &2088584216
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1179,21 +1188,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2678282938633111812, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
+      propertyPath: m_Size.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678282938633111812, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
+      propertyPath: m_Size.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678282938633111812, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5482978765489950737, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
       propertyPath: m_Name
       value: Stove
       objectReference: {fileID: 0}
     - target: {fileID: 7959097130108530766, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959097130108530766, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959097130108530766, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7959097130108530766, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.2088976
+      value: -14.64
       objectReference: {fileID: 0}
     - target: {fileID: 7959097130108530766, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.641693
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 7959097130108530766, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.715471
+      value: 10.68
       objectReference: {fileID: 0}
     - target: {fileID: 7959097130108530766, guid: 27ff2929080ca6843b933a69a42cac58, type: 3}
       propertyPath: m_LocalRotation.w

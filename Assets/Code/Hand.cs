@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
 
-    private Hand_Item item;     // player can only hold one thing at a time
+    public Hand_Item item;     // player can only hold one thing at a time
 
     void Start()
     {
