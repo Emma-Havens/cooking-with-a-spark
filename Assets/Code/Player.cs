@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private float yaw = 0.0f;
     private float pitch = 0.0f;
 
-    private float yawSpeed = 2.0f;
+    private float yawSpeed = 4.0f;
     private float pitchSpeed = 2.0f;
 
     private Rigidbody playerRB;
