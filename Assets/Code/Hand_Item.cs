@@ -56,4 +56,11 @@ public class Hand_Item : MonoBehaviour
         }
     }
 
+    public void Put_Down(Vector3 pos)
+    {
+        transform.position = pos;
+        item_collider.enabled = true;
+        item_renderer.enabled = true;
+    }
+
 }
