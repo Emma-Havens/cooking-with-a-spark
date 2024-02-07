@@ -81,10 +81,10 @@ public class Cooking_appliance : MonoBehaviour
     {
         if (within_range == true)
         {
-            if (Input.GetKeyDown(KeyCode.E) && player_hand.In_hand() != null)
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("appliance use detected");
-                if (cooking_item == null)
+                if (cooking_item == null && player_hand.In_hand() != null)
                 {
                     cooking_item = player_hand.Use_item() as Food_Item;
                     Debug.Log("beginning cooking");
