@@ -73,19 +73,19 @@ public class Meal : MonoBehaviour
         switch (f)
         {
             case Food_type.Bun:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);    
+                pos = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z);    
                 break;
             case Food_type.Burger:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z);
-                break;
-            case Food_type.Lettuce:
                 pos = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
                 break;
-            case Food_type.Tomato:
+            case Food_type.Lettuce:
                 pos = new Vector3(transform.position.x, transform.position.y + 1.4f, transform.position.z);
                 break;
+            case Food_type.Tomato:
+                pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+                break;
             case Food_type.Fries:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z + 0.5f);
+                pos = new Vector3(transform.position.x + 0.6f, transform.position.y + 1.2f, transform.position.z);
                 break;
             default:
                 pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
@@ -99,7 +99,7 @@ public class Meal : MonoBehaviour
     {
         if (tomato != null && fries != null && !finished)
         {
-            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.6f, transform.position.z);
             Instantiate(bun, pos, Quaternion.identity);
             finished = true;
         }
