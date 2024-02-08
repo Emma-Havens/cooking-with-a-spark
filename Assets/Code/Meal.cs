@@ -33,32 +33,42 @@ public class Meal : MonoBehaviour
             case Food_type.Bun:
                 Debug.Log("adding bun");
                 if (!bun)
+                {
                     bun = f;
-                bun.Put_Down(Food_Pos(Food_type.Bun));
+                    bun.Put_Down(Food_Pos(Food_type.Bun));
+                }   
                 break;
             case Food_type.Burger:
                 Debug.Log("adding burger");
                 if (!burger && bun != null)
+                {
                     burger = f;
-                burger.Put_Down(Food_Pos(Food_type.Burger));
+                    burger.Put_Down(Food_Pos(Food_type.Burger));
+                }  
                 break;
             case Food_type.Lettuce:
                 Debug.Log("adding lettuce");
                 if (!lettuce && burger != null)
+                {
                     lettuce = f;
-                lettuce.Put_Down(Food_Pos(Food_type.Lettuce));
+                    lettuce.Put_Down(Food_Pos(Food_type.Lettuce));
+                }
                 break;
             case Food_type.Tomato:
                 Debug.Log("adding tomato");
                 if (!tomato && lettuce != null)
+                {
                     tomato = f;
-                tomato.Put_Down(Food_Pos(Food_type.Tomato));
+                    tomato.Put_Down(Food_Pos(Food_type.Tomato));
+                }
                 break;
             case Food_type.Fries:
                 Debug.Log("adding fries");
                 if (!fries)
+                {
                     fries = f;
-                fries.Put_Down(Food_Pos(Food_type.Fries));
+                    fries.Put_Down(Food_Pos(Food_type.Fries));
+                }  
                 break; 
             default:
                 break;
