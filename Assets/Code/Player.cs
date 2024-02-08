@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     {
         yaw += yawSpeed * Input.GetAxis("Mouse X");
         pitch -= pitchSpeed * Input.GetAxis("Mouse Y");
+        
+        playerRB.velocity = Vector3.zero;
 
     }
 
