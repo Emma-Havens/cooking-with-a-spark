@@ -29,15 +29,12 @@ public class Order_Manager : MonoBehaviour
     // used in initialization. Calculates positions on canvas for orders
     void Fill_slot_array()
     {
-        Vector2 ll_order_box = box_transform.anchorMin;
-        print(ll_order_box);
-
         float height = box_transform.rect.height;
-        float y_val = ll_order_box.y + height / 2;
+        float y_val = 0;
 
         float width = box_transform.rect.width;
         float cell_width = width / max_orders;
-        float x_val = ll_order_box.x + cell_width / 2;
+        float x_val = -width / 2 + cell_width / 2;
 
         for (int i = 0; i < max_orders; i++) {
             slot_array[i] = new Vector3(x_val, y_val, 1);
@@ -55,10 +52,15 @@ public class Order_Manager : MonoBehaviour
         }
         GameObject order = Instantiate(Everything_burger_prefab,
                                        box_transform,
-                                       false);
-        order.transform.position = slot_array[i];
+                                       true);
+        order.transform.localPosition = slot_array[i];
         order_array[i] = order;
-        print(slot_array[i]);
         return order;
     }
 }
+
+// implement functional timer
+// populate orders from the right and shift orders over?
+// fix assembly station to adhere to oldest order
+// implement boss?
+
