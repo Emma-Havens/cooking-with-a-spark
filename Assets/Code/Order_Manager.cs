@@ -22,7 +22,7 @@ public class Order_Manager : MonoBehaviour
     bool waiting = false;
 
     // base time to wait between orders
-    float wait_time = 80;
+    float wait_time = 50;
 
     // transform of the order box (area where orders are displayed)
     RectTransform box_transform;    
