@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand_Item : MonoBehaviour
+public class Hand_Item : Interactable
 {
 
     protected Hand player_hand;
     protected BoxCollider item_collider;
     protected MeshRenderer item_renderer;
-
-    private bool waiting_for_pickup = false;
 
     void Start()
     {
@@ -20,28 +18,14 @@ public class Hand_Item : MonoBehaviour
 
     void Update()
     {
-        if (waiting_for_pickup == true)
-        {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                Debug.Log("pickup detected");
-                Potential_pickup();
-            }
-        }
+
     }
 
-    // player is close enough to pick up item
-    private void OnTriggerEnter(Collider other)
+    public override void Interact()
     {
-        Debug.Log("press \'p\' to pick up item");
-        waiting_for_pickup = true;
-    }
+        Debug.Log("pickup detected");
+        Potential_pickup();
 
-    // player is no longer close enough to pick up item
-    private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("pickup out of range");
-        waiting_for_pickup = false;
     }
 
     // ensures an item disappears from view after it enters player hand
@@ -52,7 +36,6 @@ public class Hand_Item : MonoBehaviour
         {
             item_collider.enabled = false;
             item_renderer.enabled = false;
-            waiting_for_pickup = false;
         }
     }
 
