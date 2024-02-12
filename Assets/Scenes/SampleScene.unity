@@ -3902,6 +3902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
+  cam: {fileID: 963194227}
 --- !u!1001 &1829798566
 PrefabInstance:
   m_ObjectHideFlags: 0
