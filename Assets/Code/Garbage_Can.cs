@@ -21,6 +21,9 @@ public class Garbage_Can : Interactable
     {
         Debug.Log("throw away detected");
         Hand_Item item = player_hand.Use_item();
+
+        item.GetComponent<MeshRenderer>().enabled = false;
+        
     }
 
 }
