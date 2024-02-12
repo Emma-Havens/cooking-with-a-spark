@@ -35,7 +35,6 @@ public class Hand_Item : Interactable
         if (pick_up == true)
         {
             item_collider.enabled = false;
-            item_renderer.enabled = false;
         }
     }
 

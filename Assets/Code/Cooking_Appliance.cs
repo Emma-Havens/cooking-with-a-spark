@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public class Cooking_appliance : Interactable
@@ -25,15 +26,13 @@ public class Cooking_appliance : Interactable
 
     public Appliance_Type type;
     Food_type compatible_food_type;
-    Dictionary<Appliance_Type, Food_type> dict;
 
     private void Start()
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
-        
-        //HOW TO GET ACCESS TO Kitchen_Types.cs DICT?
-        //dict = Kitchen_Types.Compatible_Food;
-        compatible_food_type = dict[type];
+
+        var kitchen_types = FindObjectOfType<Kitchen_Types>().GetComponent<Kitchen_Types>();
+        compatible_food_type = kitchen_types.Compatible_Food[type];
     }
 
     private void FixedUpdate()
@@ -48,7 +47,14 @@ public class Cooking_appliance : Interactable
     {
         Debug.Log("appliance use detected");
 
-        if (cooking_item == null && player_hand.In_hand() != null)
+        if (cooking_item != null && player_hand.In_hand() == null)
+        {
+            Debug.Log("ending cooking");
+
+            stop_cooking();
+        }
+
+        else if (cooking_item == null && player_hand.In_hand() != null)
         {
             Food_Item new_item = player_hand.In_hand() as Food_Item;
             if (new_item.type == compatible_food_type)
@@ -63,20 +69,15 @@ public class Cooking_appliance : Interactable
             {
                 Debug.Log("incompatible food");
             }
-            
-        }
-        else
-        {
-            Debug.Log("ending cooking");
-
-            stop_cooking();
         }
     }
 
     public void start_cooking(Food_Item to_cook)
     {
         cooking_item = to_cook;
-        //TODO move the object into position above the stove / in the toaster
+
+        cooking_item.transform.position = transform.position + new Vector3(0, 2, 0);
+        cooking_item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
     public void stop_cooking()

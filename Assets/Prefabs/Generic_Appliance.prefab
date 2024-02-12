@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2678282938633111812}
   - component: {fileID: -351545097454173158}
   m_Layer: 0
-  m_Name: Stove
+  m_Name: Generic_Appliance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
