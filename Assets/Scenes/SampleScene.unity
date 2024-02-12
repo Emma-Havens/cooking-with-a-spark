@@ -855,6 +855,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Everything_burger_prefab: {fileID: 9013382127644869597, guid: 7da8e9c06e53f44919ad534bb181dbba, type: 3}
+  max_orders: 4
+  order_array:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!156049354 &281350673
 Grid:
   m_ObjectHideFlags: 0
@@ -2943,7 +2949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d893e1a4388f414cbbf71146a19c6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meal: {fileID: 0}
+  Meal_prefab: {fileID: 8500540838675931692, guid: 83fd13e81ba8482419c4183da5afa1c5, type: 3}
+  meal_array: []
 --- !u!65 &2033385680
 BoxCollider:
   m_ObjectHideFlags: 0

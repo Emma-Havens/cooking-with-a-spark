@@ -35,8 +35,8 @@ public class Food_Item : Hand_Item
         item_renderer = GetComponent<MeshRenderer>();
 
         state = State.Raw;
-        Debug.Log(state);
-        Debug.Log(type);
+        //Debug.Log(state);
+        //Debug.Log(type);
     }
 
     // appliances call this to cook or chop food items

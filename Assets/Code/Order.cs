@@ -23,29 +23,39 @@ public class Order : MonoBehaviour
     // specifies the ingredients the order requires
     // note that all ingredients should have state State.Processed
     // but that is not made explicit here
-    public Food_type[] ingredients;
+    public Food_type[] order_items;
 
     // timer object visible on screen
     TMP_Text timer;
-   
+
+    // needs to happen BEFORE start is run
+    private void Awake()
+    {
+        Initialize_order_items();
+    }
+
     void Start()
+    {
+        Initialize_timer();
+        Set_timer();
+    }
+
+    void Initialize_order_items()
     {
         switch (this.recipe)
         {
             case Recipe.Everything:
                 time_limit = 60;
-                ingredients = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato };
                 break;
             case Recipe.Full_meal:
                 time_limit = 65;
-                ingredients = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato,
                                   Food_type.Fries };
                 break;
         }
-        Initialize_timer();
-        Set_timer();
     }
 
     // sets up timer and start_time
@@ -88,6 +98,7 @@ public class Order : MonoBehaviour
     void Order_timeout()
     {
         // make loudspeaker man mad
+        // destory meal
         Destroy(this.gameObject);
     }
 }
