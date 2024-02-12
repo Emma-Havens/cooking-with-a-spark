@@ -1,24 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Hand : MonoBehaviour
 {
 
-    public Hand_Item item;     // player can only hold one thing at a time
+    public Hand_Item item = null;     // player can only hold one thing at a time
 
-    void Start()
-    {
-        item = null;
-    }
+    public Camera cam;
 
     void Update()
     {
         if (item != null)
         {
             //moving object in front of player, and rotating it with the player
-            item.transform.position = transform.position + transform.forward + transform.right;
-            item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            item.transform.position = cam.transform.position + cam.transform.forward + Vector3.Scale(cam.transform.right - cam.transform.up, new Vector3(.5f, .5f, .5f));
+            item.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x, cam.transform.rotation.eulerAngles.y, 0);
         }
     }
 
