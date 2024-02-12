@@ -11,17 +11,6 @@ public enum State
     Ruined
 }
 
-// all food items is one of the following food types
-// must be given at item initialization
-public enum Food_type
-{
-    Burger,
-    Bun,
-    Lettuce,
-    Tomato,
-    Fries
-}
-
 public class Food_Item : Hand_Item
 {
 

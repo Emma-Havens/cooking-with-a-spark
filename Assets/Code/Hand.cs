@@ -14,7 +14,12 @@ public class Hand : MonoBehaviour
 
     void Update()
     {
-        
+        if (item != null)
+        {
+            //moving object in front of player, and rotating it with the player
+            item.transform.position = transform.position + transform.forward + transform.right;
+            item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        }
     }
 
     // sets the hand item to incoming object if hand is not full
