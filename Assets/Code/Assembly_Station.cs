@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Timeline.Actions.MenuPriority;
 
-public class Assembly_Station : Interactable
+public class Assembly_Station : Counter
 {
 
     private Hand player_hand;

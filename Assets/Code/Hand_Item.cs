@@ -8,6 +8,7 @@ public class Hand_Item : Interactable
     protected Hand player_hand;
     protected BoxCollider item_collider;
     protected MeshRenderer item_renderer;
+    private Counter counter = null;
 
     void Start()
     {
@@ -29,18 +30,23 @@ public class Hand_Item : Interactable
     }
 
     // ensures an item disappears from view after it enters player hand
-    void Potential_pickup()
+    public void Potential_pickup()
     {
-        bool pick_up = player_hand.Pick_up_item(this);
-        if (pick_up == true)
+        if (player_hand.Pick_up_item(this))
         {
             item_collider.enabled = false;
+
+            if (counter != null)
+                counter.TakeFood();
+            counter = null;
         }
     }
 
-    public void Put_Down(Vector3 pos)
+    public void Put_Down(Vector3 pos, Counter c)
     {
+        counter = c;
         transform.position = pos;
+        transform.rotation = Quaternion.identity;
         item_collider.enabled = true;
         item_renderer.enabled = true;
     }

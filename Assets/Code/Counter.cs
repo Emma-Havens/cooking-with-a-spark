@@ -24,25 +24,36 @@ public class Counter : Interactable
     {
         if (player_hand.In_hand() != null)
         {
-            Food_Item item;
-
-            if (player_hand.In_hand().TryGetComponent<Food_Item>(out item))
-            { 
-                if (!currItem)
-                {
-                    currItem = item;
-                    Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z);
-                    item.Put_Down(pos);
-                    player_hand.Use_item();
-                }     
-            }  
+            AddFood(); 
                 
         }
         else if (currItem != null)
         {
-            player_hand.Pick_up_item(currItem);
-            currItem = null;   
+            currItem.Potential_pickup();
+            TakeFood(); 
         }
 
+    }
+
+    public void AddFood()
+    {
+        Food_Item item;
+
+        if (player_hand.In_hand().TryGetComponent<Food_Item>(out item))
+        {
+            if (!currItem)
+            {
+                currItem = item;
+                Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);
+                item.Put_Down(pos, this);
+                player_hand.Use_item();
+            }
+        }
+
+    }
+
+    public void TakeFood()
+    {
+        currItem = null;
     }
 }

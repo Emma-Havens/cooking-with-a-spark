@@ -10,6 +10,7 @@ public class Meal : MonoBehaviour
     private Food_Item lettuce;
     private Food_Item tomato;
     private Food_Item fries;
+    private Assembly_Station station;
 
     private bool finished = false;
    
@@ -17,7 +18,7 @@ public class Meal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+       station = FindObjectOfType<Assembly_Station>().GetComponent<Assembly_Station>();
     }
 
     // Update is called once per frame
@@ -35,7 +36,7 @@ public class Meal : MonoBehaviour
                 if (!bun)
                 {
                     bun = f;
-                    bun.Put_Down(Food_Pos(Food_type.Bun));
+                    bun.Put_Down(Food_Pos(Food_type.Bun), station);
                 }   
                 break;
             case Food_type.Burger:
@@ -43,7 +44,7 @@ public class Meal : MonoBehaviour
                 if (!burger && bun != null)
                 {
                     burger = f;
-                    burger.Put_Down(Food_Pos(Food_type.Burger));
+                    burger.Put_Down(Food_Pos(Food_type.Burger), station);
                 }  
                 break;
             case Food_type.Lettuce:
@@ -51,7 +52,7 @@ public class Meal : MonoBehaviour
                 if (!lettuce && burger != null)
                 {
                     lettuce = f;
-                    lettuce.Put_Down(Food_Pos(Food_type.Lettuce));
+                    lettuce.Put_Down(Food_Pos(Food_type.Lettuce), station);
                 }
                 break;
             case Food_type.Tomato:
@@ -59,7 +60,7 @@ public class Meal : MonoBehaviour
                 if (!tomato && lettuce != null)
                 {
                     tomato = f;
-                    tomato.Put_Down(Food_Pos(Food_type.Tomato));
+                    tomato.Put_Down(Food_Pos(Food_type.Tomato), station);
                 }
                 break;
             case Food_type.Fries:
@@ -67,7 +68,7 @@ public class Meal : MonoBehaviour
                 if (!fries)
                 {
                     fries = f;
-                    fries.Put_Down(Food_Pos(Food_type.Fries));
+                    fries.Put_Down(Food_Pos(Food_type.Fries), station);
                 }  
                 break; 
             default:
