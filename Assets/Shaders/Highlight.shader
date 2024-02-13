@@ -31,6 +31,7 @@ Shader "Custom/Highlight"
         half _Metallic;
         half _Highlight;
         fixed4 _Color;
+        
 
         // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
         // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -43,9 +44,10 @@ Shader "Custom/Highlight"
         {
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            c.r += _Highlight;
-            c.g += _Highlight;
-            c.b += _Highlight;
+
+            c.r = min(c.r + _Highlight, 1);
+            c.g = min(c.g + _Highlight, 1);
+            c.b = min(c.b + _Highlight, 1);;
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;

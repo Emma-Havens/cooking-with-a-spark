@@ -48,7 +48,7 @@ public class Raycast : MonoBehaviour
                 {
                     
                     obj.TryGetComponent<MeshRenderer>(out currMR);
-                    currMR.material.SetFloat("_Highlight", 1.0f);
+                    currMR.material.SetFloat("_Highlight", 0.5f);
                     currObj = obj;
 
                 }
@@ -58,7 +58,7 @@ public class Raycast : MonoBehaviour
                     currMR.material.SetFloat("_Highlight", 0.0f);
                     
                     obj.TryGetComponent<MeshRenderer>(out currMR);
-                    currMR.material.SetFloat("_Highlight", 1.0f);
+                    currMR.material.SetFloat("_Highlight", 0.5f);
                     currObj = obj;
 
                 }
