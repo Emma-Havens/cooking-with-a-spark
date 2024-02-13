@@ -21,6 +21,10 @@ public class Meal : MonoBehaviour
     // order_items array is already supplied for this meal
     bool[] order_items_bool;
 
+    // current height of the meal (used for placing next item)
+    float meal_height;
+    float initial_meal_height;
+
     // used in Finish to top off burger
     GameObject bun;
 
@@ -30,6 +34,8 @@ public class Meal : MonoBehaviour
     void Start()
     {
         station = FindObjectOfType<Assembly_Station>().GetComponent<Assembly_Station>();
+        initial_meal_height = transform.position.y + 1.1f;
+        meal_height = initial_meal_height + 0.1f;
     }
 
     // Must be called by Assembly_Station on creation to set order_items
@@ -89,22 +95,14 @@ public class Meal : MonoBehaviour
         switch (f)
         {
             case Food_type.Bun:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z);
-                break;
-            case Food_type.Burger:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
-                break;
-            case Food_type.Lettuce:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.4f, transform.position.z);
-                break;
-            case Food_type.Tomato:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+                pos = new Vector3(transform.position.x, initial_meal_height, transform.position.z);
                 break;
             case Food_type.Fries:
-                pos = new Vector3(transform.position.x + 0.6f, transform.position.y + 1.2f, transform.position.z);
+                pos = new Vector3(transform.position.x + 0.6f, initial_meal_height, transform.position.z);
                 break;
             default:
-                pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                pos = new Vector3(transform.position.x, meal_height, transform.position.z);
+                meal_height += 0.1f;
                 break;
         }
 
@@ -115,7 +113,7 @@ public class Meal : MonoBehaviour
     public IEnumerator Finish()
     {
 
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.6f, transform.position.z);
+        Vector3 pos = new Vector3(transform.position.x, meal_height, transform.position.z);
         GameObject top_bun = Instantiate(bun, pos, Quaternion.identity);
 
         order.Order_fulfillment();

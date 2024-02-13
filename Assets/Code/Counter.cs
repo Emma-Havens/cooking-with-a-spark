@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Counter : Interactable
 {
-    private Hand player_hand = null;
+    protected Hand player_hand = null;
     private Food_Item currItem = null;
 
     // Start is called before the first frame update

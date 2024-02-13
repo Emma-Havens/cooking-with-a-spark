@@ -18,8 +18,6 @@ public class Assembly_Station : Counter
     // meals active in assembly station
     public Meal[] meal_array;
 
-    private Hand player_hand;
-
     // Start is called before the first frame update
     void Start()
     {
