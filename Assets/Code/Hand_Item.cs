@@ -32,7 +32,7 @@ public class Hand_Item : Interactable
     // ensures an item disappears from view after it enters player hand
     public void Potential_pickup()
     {
-        if (player_hand.Pick_up_item(this))
+        if (player_hand.Pick_up_item(this.gameObject))
         {
             item_collider.enabled = false;
 

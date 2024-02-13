@@ -37,8 +37,8 @@ public class Fridge : Interactable
 
             if (player_hand.In_hand() == null)
             {
-                Object new_food = Instantiate(foodprefab, new Vector3(0, 0, 0), Quaternion.identity);
-                player_hand.item = new_food.GetComponent<Food_Item>();
+                GameObject new_food = Instantiate(foodprefab, new Vector3(0, 0, 0), Quaternion.identity);
+                player_hand.Pick_up_item(new_food);
             }
 
         }

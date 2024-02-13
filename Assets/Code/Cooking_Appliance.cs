@@ -10,7 +10,7 @@ public class Cooking_appliance : Interactable
     //when electricity is implemented, the default should be false
     bool is_powered = true;
 
-    Food_Item cooking_item = null;
+    GameObject cooking_item = null;
 
     //public so you can watch in editor, and updating progress bar
     public int cook_progress = 0;
@@ -56,12 +56,13 @@ public class Cooking_appliance : Interactable
 
         else if (cooking_item == null && player_hand.In_hand() != null)
         {
-            Food_Item new_item = player_hand.In_hand() as Food_Item;
-            if (new_item.type == compatible_food_type)
+            GameObject new_obj = player_hand.In_hand();
+            Food_Item new_item = new_obj.GetComponent<Food_Item>();
+            if (new_item != null && new_item.type == compatible_food_type)
             {
                 Debug.Log("beginning cooking");
 
-                cooking_item = new_item;
+                cooking_item = new_obj;
                 player_hand.Use_item();
                 start_cooking(cooking_item);
             }
@@ -72,7 +73,7 @@ public class Cooking_appliance : Interactable
         }
     }
 
-    public void start_cooking(Food_Item to_cook)
+    public void start_cooking(GameObject to_cook)
     {
         cooking_item = to_cook;
 
@@ -84,7 +85,7 @@ public class Cooking_appliance : Interactable
     {
         cook_progress = 0;
 
-        Food_Item temp_item = cooking_item;
+        GameObject temp_item = cooking_item;
         cooking_item = null;
 
         //return temp_item;
@@ -100,12 +101,12 @@ public class Cooking_appliance : Interactable
         if (cook_progress >= ruined)
         {
             Debug.Log("food ruined!");
-            cooking_item.Ruin_food();
+            cooking_item.GetComponent<Food_Item>().Ruin_food();
         }
         else if (cook_progress >= processed)
         {
             Debug.Log("food cooked!");
-            cooking_item.Process_food();
+            cooking_item.GetComponent<Food_Item>().Process_food();
         }
     }
 }
