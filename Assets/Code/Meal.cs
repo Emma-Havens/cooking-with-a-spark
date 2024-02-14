@@ -1,118 +1,129 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+//using System.Numerics;
 using UnityEngine;
 
 
 public class Meal : MonoBehaviour
 {
-    private Food_Item burger;
-    private Food_Item bun;
-    private Food_Item lettuce;
-    private Food_Item tomato;
-    private Food_Item fries;
+    // the order object this meal fulfills
+    Order order;
+
+    // array of all foods that the order dictates must be in the meal
+    Food_type[] order_items;
+
+    // references to the food gameobjects in the assembly station
+    GameObject[] ingredients;
+
+    // bool array of whether or not the food_item of the same index in the
+    // order_items array is already supplied for this meal
+    bool[] order_items_bool;
+
+    // current height of the meal (used for placing next item)
+    float meal_height;
+    float initial_meal_height;
+
+    // used in Finish to top off burger
+    public GameObject bun_prefab;
+
+    // used to place food_item objects on
     private Assembly_Station station;
 
-    private bool finished = false;
-   
-
-    // Start is called before the first frame update
     void Start()
     {
-       station = FindObjectOfType<Assembly_Station>().GetComponent<Assembly_Station>();
+        station = FindObjectOfType<Assembly_Station>().GetComponent<Assembly_Station>();
+        initial_meal_height = transform.position.y + 1.1f;
+        meal_height = initial_meal_height + 0.1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Must be called by Assembly_Station on creation to set order_items
+    public void Set_order(GameObject assigned_order)
     {
-        
+        order = assigned_order.GetComponent<Order>();
+        order_items = order.order_items;
+        order_items_bool = new bool[order_items.Length];
+        ingredients = new GameObject[order_items.Length];
+        Array.Fill(order_items_bool, false);
     }
 
-    public void Add_Item(Food_Item f)
+    // checks whether a supplied ingredient is in the order for the meal
+    // gameobject has already been checked to have a food item component
+    public bool Try_add_item(GameObject ingredient)
     {
-        switch(f.type)
+        Food_Item ing = ingredient.GetComponent<Food_Item>();
+
+        // DO THIS WHEN APPLIANCES ARE FULLY IMPLEMENTED
+        //if (ingredient.state != State.Processed)
+        //{
+        //    return false;
+        //}
+
+        for (int i = 0; i < order_items.Length; i++)
         {
-            case Food_type.Bun:
-                Debug.Log("adding bun");
-                if (!bun)
-                {
-                    bun = f;
-                    bun.Put_Down(Food_Pos(Food_type.Bun), station);
-                }   
-                break;
-            case Food_type.Burger:
-                Debug.Log("adding burger");
-                if (!burger && bun != null)
-                {
-                    burger = f;
-                    burger.Put_Down(Food_Pos(Food_type.Burger), station);
-                }  
-                break;
-            case Food_type.Lettuce:
-                Debug.Log("adding lettuce");
-                if (!lettuce && burger != null)
-                {
-                    lettuce = f;
-                    lettuce.Put_Down(Food_Pos(Food_type.Lettuce), station);
-                }
-                break;
-            case Food_type.Tomato:
-                Debug.Log("adding tomato");
-                if (!tomato && lettuce != null)
-                {
-                    tomato = f;
-                    tomato.Put_Down(Food_Pos(Food_type.Tomato), station);
-                }
-                break;
-            case Food_type.Fries:
-                Debug.Log("adding fries");
-                if (!fries)
-                {
-                    fries = f;
-                    fries.Put_Down(Food_Pos(Food_type.Fries), station);
-                }  
-                break; 
-            default:
-                break;
-        }
+            if (order_items[i] == ing.type &&
+                order_items_bool[i] != true)
+            {
+                Debug.Log("adding " + order_items[i]);
+                ing.Put_Down(Food_Pos(ing.type), station);
+                order_items_bool[i] = true;
+                ingredients[i] = ingredient;
 
+                // if all order_items have been supplied
+                if (order_items_bool.All(x => x))
+                {
+                    StartCoroutine(Finish());
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
-    private Vector3 Food_Pos(Food_type f) 
+    // returns the position the food_item should appear at
+    private Vector3 Food_Pos(Food_type f)
     {
         Vector3 pos;
 
         switch (f)
         {
             case Food_type.Bun:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.z);    
-                break;
-            case Food_type.Burger:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.3f, transform.position.z);
-                break;
-            case Food_type.Lettuce:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.4f, transform.position.z);
-                break;
-            case Food_type.Tomato:
-                pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+                pos = new Vector3(transform.position.x, initial_meal_height, transform.position.z);
                 break;
             case Food_type.Fries:
-                pos = new Vector3(transform.position.x + 0.6f, transform.position.y + 1.2f, transform.position.z);
+                pos = new Vector3(transform.position.x + 0.6f, initial_meal_height, transform.position.z);
                 break;
             default:
-                pos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                pos = new Vector3(transform.position.x, meal_height, transform.position.z);
+                meal_height += 0.1f;
                 break;
         }
 
         return pos;
     }
 
-    public void Finish()
+    // automatically finishes meal when all order_items are in
+    public IEnumerator Finish()
     {
-        if (tomato != null && fries != null && !finished)
+
+        Vector3 pos = new Vector3(transform.position.x, meal_height, transform.position.z);
+        GameObject top_bun = Instantiate(bun_prefab, pos, Quaternion.identity);
+
+        order.Order_fulfillment();
+        Debug.Log("Finished");
+
+        yield return new WaitForSecondsRealtime(3);
+
+        for (int i = 0; i < ingredients.Length; i++)
         {
-            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.6f, transform.position.z);
-            Instantiate(bun, pos, Quaternion.identity);
-            finished = true;
+            Destroy(ingredients[i]);
         }
+        Destroy(top_bun);
+        Destroy(this.gameObject);
     }
 }
+
+
+
+

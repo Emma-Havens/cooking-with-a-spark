@@ -7,21 +7,23 @@ using static UnityEditor.Timeline.Actions.MenuPriority;
 public class Assembly_Station : Counter
 {
 
-    private Hand player_hand;
-    public Meal meal;
+    public GameObject Meal_prefab;
+
     private Vector3 mealPos;
+
+    // maximum number of meals being built
+    // same as max_orders in Order_Manager
+    int max_meals;
+
+    // meals active in assembly station
+    public Meal[] meal_array;
 
     // Start is called before the first frame update
     void Start()
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
-        meal = gameObject.AddComponent<Meal>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        max_meals = FindAnyObjectByType<Order_Manager>().max_orders;
+        meal_array = new Meal[max_meals];
     }
 
     public override void Interact()
@@ -30,21 +32,49 @@ public class Assembly_Station : Counter
 
         if (player_hand.In_hand() != null)
         {
-            Food_Item item;
-            if (player_hand.In_hand().TryGetComponent<Food_Item>(out item))
-                AddIngredient(item);
-        }
-        else
-        {
-            meal.Finish();
+            GameObject hand_item = player_hand.In_hand();
+            if (hand_item.GetComponent<Food_Item>() != null)
+            {
+                AddIngredient(hand_item);
+            }
         }
     }
 
-    private void AddIngredient(Food_Item item)
+    // automatically adds a potential meal when an order comes in
+    public void Add_meal(GameObject order)
     {
-
-        meal.Add_Item(item);
-        player_hand.Use_item();
+        int i = 0;
+        while (meal_array[i] != null)
+        {
+            i++;
+            Debug.Log(meal_array[i]);
+        }
+        meal_array[i] = Instantiate(Meal_prefab, this.transform, false).GetComponent<Meal>();
+        meal_array[i].Set_order(order);
+        Debug.Log("meal set at " + i);
+        Debug.Log(meal_array[i]);
     }
 
+    // preferentially adds the food item to the oldest order
+    // DOESN'T DO THAT YET
+    private void AddIngredient(GameObject ingredient)
+    {
+        bool item_used = false;
+        int i = 0;
+        while (item_used == false && i < meal_array.Length)
+        {
+            if (meal_array[i] != null
+               && meal_array[i].Try_add_item(ingredient) == true)
+            {
+                player_hand.Use_item();
+                item_used = true;
+            }
+            i++;
+        }
+        if (item_used == false)
+        {
+            Debug.Log("Item was not used");
+            // Loudspeaker yells at you
+        }
+    }
 }

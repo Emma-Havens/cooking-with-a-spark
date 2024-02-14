@@ -6,7 +6,7 @@ using static UnityEditor.Progress;
 public class Hand : MonoBehaviour
 {
 
-    public Hand_Item item = null;     // player can only hold one thing at a time
+    public GameObject item = null;     // player can only hold one thing at a time
 
     public Camera cam;
 
@@ -21,10 +21,10 @@ public class Hand : MonoBehaviour
     }
 
     // sets the hand item to incoming object if hand is not full
-    public bool Pick_up_item(Hand_Item obj)
+    public bool Pick_up_item(GameObject obj)
     {
         bool pick_up = false;
-        if (item == null)
+        if (item == null && obj.GetComponent<Hand_Item>() != null)
         {
             item = obj;
             pick_up = true;
@@ -38,9 +38,9 @@ public class Hand : MonoBehaviour
 
     // returns the current hand item which MAY BE NULL
     // the contents of the hand is 'used up'
-    public Hand_Item Use_item()
+    public GameObject Use_item()
     {
-        Hand_Item obj = null;
+        GameObject obj = null;
         if (item != null)
         {
             obj = item;
@@ -54,7 +54,7 @@ public class Hand : MonoBehaviour
     }
 
     // returns the current hand item WITHOUT using it up
-    public Hand_Item In_hand()
+    public GameObject In_hand()
     {
         return item;
     }
