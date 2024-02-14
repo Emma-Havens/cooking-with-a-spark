@@ -26,7 +26,7 @@ public class Meal : MonoBehaviour
     float initial_meal_height;
 
     // used in Finish to top off burger
-    GameObject bun;
+    public GameObject bun_prefab;
 
     // used to place food_item objects on
     private Assembly_Station station;
@@ -75,12 +75,6 @@ public class Meal : MonoBehaviour
                 {
                     StartCoroutine(Finish());
                 }
-
-                if (ing.type == Food_type.Bun)
-                {
-                    bun = ingredient;
-                }
-
                 return true;
             }
         }
@@ -114,7 +108,7 @@ public class Meal : MonoBehaviour
     {
 
         Vector3 pos = new Vector3(transform.position.x, meal_height, transform.position.z);
-        GameObject top_bun = Instantiate(bun, pos, Quaternion.identity);
+        GameObject top_bun = Instantiate(bun_prefab, pos, Quaternion.identity);
 
         order.Order_fulfillment();
         Debug.Log("Finished");
