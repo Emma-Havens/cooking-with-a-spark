@@ -39,4 +39,10 @@ public class Food_Item : Hand_Item
     {
         state = State.Ruined;
     }
+
+    public Appliance_Type get_compatible()
+    {
+        var kitchen_types = FindObjectOfType<Kitchen_Types>().GetComponent<Kitchen_Types>();
+        return kitchen_types.Compatible_Food[type];
+    }
 }

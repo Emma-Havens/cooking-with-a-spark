@@ -20,19 +20,15 @@ public class Cooking_appliance : Interactable
 
     //when cook_progress reaches these numbers, the food's state changes
     public int processed = 1000;
-    public int ruined = 1250;
+    public int ruined = 1750;
 
     private Hand player_hand = null;
 
     public Appliance_Type type;
-    Food_type compatible_food_type;
 
     private void Start()
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
-
-        var kitchen_types = FindObjectOfType<Kitchen_Types>().GetComponent<Kitchen_Types>();
-        compatible_food_type = kitchen_types.Compatible_Food[type];
     }
 
     private void FixedUpdate()
@@ -58,7 +54,7 @@ public class Cooking_appliance : Interactable
         {
             GameObject new_obj = player_hand.In_hand();
             Food_Item new_item = new_obj.GetComponent<Food_Item>();
-            if (new_item != null && new_item.type == compatible_food_type)
+            if (new_item != null && type == new_item.get_compatible())
             {
                 Debug.Log("beginning cooking");
 

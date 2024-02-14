@@ -15,15 +15,18 @@ public enum Appliance_Type
 {
     Stove,
     Toaster,
-    Fryer
+    Fryer,
+    Chopper
 }
 
 public class Kitchen_Types : MonoBehaviour
 {
-    public Dictionary<Appliance_Type, Food_type> Compatible_Food = new Dictionary<Appliance_Type, Food_type>
+    public Dictionary<Food_type, Appliance_Type> Compatible_Food = new Dictionary<Food_type, Appliance_Type>
     {
-        {Appliance_Type.Stove, Food_type.Burger},
-        {Appliance_Type.Toaster, Food_type.Bun},
-        {Appliance_Type.Fryer, Food_type.Fries},
+        {Food_type.Burger, Appliance_Type.Stove},
+        {Food_type.Bun, Appliance_Type.Toaster},
+        {Food_type.Fries, Appliance_Type.Fryer},
+        {Food_type.Lettuce, Appliance_Type.Chopper},
+        {Food_type.Tomato, Appliance_Type.Chopper}
     };
 }
