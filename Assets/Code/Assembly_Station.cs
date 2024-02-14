@@ -9,8 +9,6 @@ public class Assembly_Station : Counter
 
     public GameObject Meal_prefab;
 
-    private Vector3 mealPos;
-
     // maximum number of meals being built
     // same as max_orders in Order_Manager
     int max_meals;

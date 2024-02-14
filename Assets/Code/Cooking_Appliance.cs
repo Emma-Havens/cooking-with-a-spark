@@ -26,6 +26,8 @@ public class Cooking_appliance : Interactable
 
     public Appliance_Type type;
 
+    public Progress_Bar prog_bar;
+
     private void Start()
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
@@ -36,6 +38,8 @@ public class Cooking_appliance : Interactable
         if (cooking_item && is_powered) 
         {
             increment_cook();
+            prog_bar.SetProgress(cook_progress);
+
         }
     }
 
@@ -48,6 +52,9 @@ public class Cooking_appliance : Interactable
             Debug.Log("ending cooking");
 
             stop_cooking();
+
+            prog_bar.Enable(false);
+  
         }
 
         else if (cooking_item == null && player_hand.In_hand() != null)
@@ -61,6 +68,9 @@ public class Cooking_appliance : Interactable
                 cooking_item = new_obj;
                 player_hand.Use_item();
                 start_cooking(cooking_item);
+
+                prog_bar.Enable(true);
+
             }
             else
             {
