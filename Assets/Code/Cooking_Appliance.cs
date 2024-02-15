@@ -73,7 +73,7 @@ public class Cooking_appliance : Interactable
     {
         cooking_item = to_cook;
 
-        cooking_item.transform.position = transform.position + new Vector3(0, 1.5f, 0);
+        cooking_item.transform.position = transform.position + new Vector3(0, 2, 0);
         cooking_item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
