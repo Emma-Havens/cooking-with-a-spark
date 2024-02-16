@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4369242, g: 0.48458844, b: 0.56484735, a: 1}
+  m_IndirectSpecularColor: {r: 0.43692416, g: 0.48458815, b: 0.56484663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1218,6 +1218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Everything_burger_prefab: {fileID: 9013382127644869597, guid: 7da8e9c06e53f44919ad534bb181dbba, type: 3}
+  Full_meal_prefab: {fileID: 0}
   max_orders: 4
   order_array: []
 --- !u!156049354 &281350673
@@ -1674,15 +1675,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418388571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.35099983}
-  m_LocalScale: {x: 0.1192825, y: 0.0562737, z: 0.025}
+  m_LocalPosition: {x: 0, y: 0, z: -0.515}
+  m_LocalScale: {x: 0.054777425, y: 0.041148283, z: 0.025}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 779851743}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.18, y: 1.16}
+  m_AnchoredPosition: {x: -0.007, y: 0.242}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &418388573
@@ -2490,7 +2491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Meal_prefab: {fileID: 8500540838675931692, guid: 83fd13e81ba8482419c4183da5afa1c5, type: 3}
-  meal_array: []
+  Order_prefab: {fileID: 0}
+  meal: {fileID: 0}
 --- !u!65 &779851740
 BoxCollider:
   m_ObjectHideFlags: 0
