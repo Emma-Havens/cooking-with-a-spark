@@ -13,7 +13,7 @@ public class Breaker : MonoBehaviour
     //if not, return false
     public bool add_load()
     {
-        if (current_load++ >= max_load)
+        if (current_load + 1 > max_load)
         {
             Debug.Log("Load could not be increased");
             return false;

@@ -37,7 +37,7 @@ public class Cooking_appliance : Interactable
     {
         if (cooking_item && is_powered) 
         {
-            increment_cook();
+            IncrementCook();
             prog_bar.SetProgress(cook_progress);
 
         }
@@ -51,7 +51,7 @@ public class Cooking_appliance : Interactable
         {
             Debug.Log("ending cooking");
 
-            stop_cooking();
+            StopCooking();
 
             prog_bar.Enable(false);
   
@@ -67,7 +67,7 @@ public class Cooking_appliance : Interactable
 
                 cooking_item = new_obj;
                 player_hand.Use_item();
-                start_cooking(cooking_item);
+                StartCooking(cooking_item);
 
                 prog_bar.Enable(true);
 
@@ -79,7 +79,7 @@ public class Cooking_appliance : Interactable
         }
     }
 
-    public void start_cooking(GameObject to_cook)
+    public void StartCooking(GameObject to_cook)
     {
         cooking_item = to_cook;
 
@@ -87,7 +87,7 @@ public class Cooking_appliance : Interactable
         cooking_item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
     }
 
-    public void stop_cooking()
+    public void StopCooking()
     {
         cook_progress = 0;
 
@@ -100,7 +100,7 @@ public class Cooking_appliance : Interactable
 
     //increments cook_progress by cook_speed
     //checks progress and changes cooking_item.state
-    private void increment_cook()
+    private void IncrementCook()
     {
         cook_progress += cook_speed;
 

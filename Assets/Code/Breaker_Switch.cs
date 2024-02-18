@@ -10,10 +10,14 @@ public class Breaker_Switch : Interactable
     bool on = false;
 
     Breaker breaker;
+    Renderer ren;
 
     private void Start()
     {
-        breaker = FindObjectOfType<Breaker>();
+        breaker = FindObjectOfType<Breaker>().GetComponent<Breaker>();
+
+        ren = GetComponent<Renderer>();
+        ren.material.color = Color.red;
     }
 
     public override void Interact()
@@ -24,8 +28,8 @@ public class Breaker_Switch : Interactable
             if (breaker.add_load())
             {
                 appliance.is_powered = true;
-
                 on = true;
+                AnimateOn();
             }
         }
 
@@ -34,7 +38,20 @@ public class Breaker_Switch : Interactable
             breaker.remove_load();
             appliance.is_powered = false;
 
+            AnimateOff();
             on = false;
         }
+    }
+
+    private void AnimateOn()
+    {
+        ren.material.color = Color.green;
+        transform.rotation = Quaternion.Euler(-10, 0, 0);
+    }
+
+    private void AnimateOff()
+    {
+        ren.material.color = Color.red;
+        transform.rotation = Quaternion.Euler(10, 0, 0);
     }
 }
