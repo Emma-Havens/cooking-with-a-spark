@@ -8,7 +8,7 @@ public class Cooking_appliance : Interactable
 {
     //whether the appliance is plugged in or not
     //when electricity is implemented, the default should be false
-    bool is_powered = true;
+    public bool is_powered = false;
 
     GameObject cooking_item = null;
 
