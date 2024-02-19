@@ -48,12 +48,12 @@ public class Order : MonoBehaviour
         switch (this.recipe)
         {
             case Recipe.Everything:
-                time_limit = 60;
+                time_limit = 100;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato };
                 break;
             case Recipe.Full_meal:
-                time_limit = 65;
+                time_limit = 110;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato,
                                   Food_type.Fries };

@@ -54,10 +54,10 @@ public class Meal : MonoBehaviour
     {
         Food_Item ing = ingredient.GetComponent<Food_Item>();
 
-        //if (ing.state != State.Processed)
-        //{
-        //    return false;
-        //}
+        if (ing.state != State.Processed)
+        {
+            return false;
+        }
 
         for (int i = 0; i < order_items.Length; i++)
         {
