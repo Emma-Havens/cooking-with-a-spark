@@ -84,6 +84,7 @@ public class Assembly_Station : Counter
     public void Meal_fulfillment()
     {
         meal = null;
+        Destroy(displayed_order);
     }
 
     public void Meal_timeout()
@@ -92,5 +93,6 @@ public class Assembly_Station : Counter
         {
             Destroy(meal);
         }
+        Destroy(displayed_order);
     }
 }
