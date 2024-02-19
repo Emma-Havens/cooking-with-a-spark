@@ -38,16 +38,18 @@ public class Assembly_Station : Counter
     }
 
     // automatically adds a potential meal when an order comes in
-    public void Add_meal(GameObject order)
+    public bool Add_meal(GameObject order)
     {
         if (meal == null)
         {
             meal = Instantiate(Meal_prefab, this.transform, false).GetComponent<Meal>();
-            meal.Set_order(order);
+            meal.Set_order_at_station(order, this);
             Order_prefab = order;
             displayed_order = Instantiate(Order_prefab, this.transform, false);
             transform_order();
+            return true;
         }
+        return false;
     }
 
     void transform_order()
@@ -76,6 +78,19 @@ public class Assembly_Station : Counter
         {
             Debug.Log("Item was not used");
             // Loudspeaker yells at you
+        }
+    }
+
+    public void Meal_fulfillment()
+    {
+        meal = null;
+    }
+
+    public void Meal_timeout()
+    {
+        if (meal)
+        {
+            Destroy(meal);
         }
     }
 }

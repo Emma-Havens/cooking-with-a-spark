@@ -25,6 +25,9 @@ public class Order : MonoBehaviour
     // but that is not made explicit here
     public Food_type[] order_items;
 
+    // reference to the assembly station this order is assigned to
+    Assembly_Station assembly_station;
+
     // timer object visible on screen
     TMP_Text timer;
 
@@ -76,6 +79,13 @@ public class Order : MonoBehaviour
         start_time = Time.time;
     }
 
+    // called by order_manager on order init
+    public void Assign_assembly_station(Assembly_Station station)
+    {
+        assembly_station = station;
+        Debug.Log(station);
+    }
+
     void Update()
     {
         Set_timer();
@@ -99,7 +109,11 @@ public class Order : MonoBehaviour
     void Order_timeout()
     {
         // make loudspeaker man mad
-        // destory meal
+        Debug.Log(assembly_station);
+        if (assembly_station)
+        {
+            assembly_station.Meal_timeout();
+        }
         Destroy(this.gameObject);
     }
 
