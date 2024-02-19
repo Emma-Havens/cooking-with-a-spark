@@ -6,6 +6,7 @@ using UnityEngine;
 public class Order_Manager : MonoBehaviour
 {
     public GameObject Everything_burger_prefab;
+    public GameObject Full_meal_prefab;
 
     // the maximum number of orders a player can be given at a time
     public int max_orders = 4;
