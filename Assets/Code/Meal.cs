@@ -33,14 +33,14 @@ public class Meal : MonoBehaviour
 
     void Start()
     {
-        station = FindObjectOfType<Assembly_Station>().GetComponent<Assembly_Station>();
         initial_meal_height = transform.position.y + 1.1f;
         meal_height = initial_meal_height + 0.1f;
     }
 
     // Must be called by Assembly_Station on creation to set order_items
-    public void Set_order(GameObject assigned_order)
+    public void Set_order_at_station(GameObject assigned_order, Assembly_Station assembly_station)
     {
+        station = assembly_station;
         order = assigned_order.GetComponent<Order>();
         order_items = order.order_items;
         order_items_bool = new bool[order_items.Length];
@@ -54,8 +54,7 @@ public class Meal : MonoBehaviour
     {
         Food_Item ing = ingredient.GetComponent<Food_Item>();
 
-        // DO THIS WHEN APPLIANCES ARE FULLY IMPLEMENTED
-        //if (ingredient.state != State.Processed)
+        //if (ing.state != State.Processed)
         //{
         //    return false;
         //}
@@ -115,12 +114,20 @@ public class Meal : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(3);
 
-        for (int i = 0; i < ingredients.Length; i++)
-        {
-            Destroy(ingredients[i]);
-        }
+        station.Meal_fulfillment();
         Destroy(top_bun);
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < ingredients.Length; i++)
+        {
+            if (ingredients[i] != null)
+            {
+                Destroy(ingredients[i]);
+            }
+        }
     }
 }
 

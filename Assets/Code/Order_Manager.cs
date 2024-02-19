@@ -6,14 +6,18 @@ using UnityEngine;
 public class Order_Manager : MonoBehaviour
 {
     public GameObject Everything_burger_prefab;
+    public GameObject Full_meal_prefab;
 
     // the maximum number of orders a player can be given at a time
     public int max_orders = 4;
 
     // holds the position to place each order card in the order box
+    // slot closest to the edge of the screen where new orders are inserted
+    // corresponds to slot_array[max_orders - 1]
     Vector3[] slot_array;
 
-    // holds all of the active orders
+    // holds all of the active orders. New orders are always inserted at [0], older
+    // orders are moved up
     public GameObject[] order_array;
 
     // true if the order array is full
@@ -28,13 +32,13 @@ public class Order_Manager : MonoBehaviour
     // transform of the order box (area where orders are displayed)
     RectTransform box_transform;
 
-    // assembly station reference
-    Assembly_Station assembly_station;
+    // assembly station references. There SHOULD be as many stations as max_orders
+    Assembly_Station[] assembly_stations;
 
     void Start()
     {
         box_transform = GetComponent<RectTransform>();
-        assembly_station = FindAnyObjectByType<Assembly_Station>();
+        assembly_stations = FindObjectsByType<Assembly_Station>(FindObjectsSortMode.None);
         order_array = new GameObject[max_orders];
         slot_array = new Vector3[max_orders];
         Fill_slot_array();
@@ -91,6 +95,7 @@ public class Order_Manager : MonoBehaviour
                     order_array[i].transform.localPosition = slot_array[i - 1];
                     order_array[i - 1] = order_array[i];
                     order_array[i] = null;
+                    
                 }
             }
             if (order_array[0] != null)
@@ -102,13 +107,18 @@ public class Order_Manager : MonoBehaviour
                                            false);
             order.transform.localPosition = slot_array[max_orders - 1];
             order_array[max_orders - 1] = order;
-            assembly_station.Add_meal(order);
+
+            int j = 0;
+            while (assembly_stations[j].Add_meal(order) == false)
+            {
+                j++;
+            }
+            Debug.Log(j);
+            order.GetComponent<Order>().Assign_assembly_station(assembly_stations[j]);
         }
     }
 }
 
-// fix assembly station to adhere to oldest order
-// fix meals so there can be multiple at once
 // implement boss?
-// add random variation to wait_time
+// add variation to wait_time
 

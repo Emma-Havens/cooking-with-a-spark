@@ -2,26 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class Assembly_Station : Counter
 {
 
     public GameObject Meal_prefab;
-
-    // maximum number of meals being built
-    // same as max_orders in Order_Manager
-    int max_meals;
+    public GameObject Order_prefab;
 
     // meals active in assembly station
-    public Meal[] meal_array;
+    public Meal meal;
+
+    // the order card visible above the assembly station
+    GameObject displayed_order;
 
     // Start is called before the first frame update
     void Start()
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
-        max_meals = FindAnyObjectByType<Order_Manager>().max_orders;
-        meal_array = new Meal[max_meals];
     }
 
     public override void Interact()
@@ -39,40 +38,61 @@ public class Assembly_Station : Counter
     }
 
     // automatically adds a potential meal when an order comes in
-    public void Add_meal(GameObject order)
+    public bool Add_meal(GameObject order)
     {
-        int i = 0;
-        while (meal_array[i] != null)
+        if (meal == null)
         {
-            i++;
-            Debug.Log(meal_array[i]);
+            meal = Instantiate(Meal_prefab, this.transform, false).GetComponent<Meal>();
+            meal.Set_order_at_station(order, this);
+            Order_prefab = order;
+            displayed_order = Instantiate(Order_prefab, this.transform, false);
+            transform_order();
+            return true;
         }
-        meal_array[i] = Instantiate(Meal_prefab, this.transform, false).GetComponent<Meal>();
-        meal_array[i].Set_order(order);
-        Debug.Log("meal set at " + i);
-        Debug.Log(meal_array[i]);
+        return false;
     }
 
-    // preferentially adds the food item to the oldest order
-    // DOESN'T DO THAT YET
+    void transform_order()
+    {
+        Sprite order_sprite = displayed_order.GetComponent<Image>().sprite;
+        Destroy(displayed_order.GetComponent<Image>());
+        Destroy(displayed_order.GetComponent<CanvasRenderer>());
+        SpriteRenderer rend = displayed_order.AddComponent<SpriteRenderer>();
+        rend.sprite = order_sprite;
+        RectTransform trans = displayed_order.GetComponent<RectTransform>();
+        Vector3 scale = trans.localScale;
+        trans.localScale = new Vector3(scale.x / 10, scale.y / 10, scale.z);
+        displayed_order.transform.localPosition = new Vector3(0f, 1.3f, 0.5f);
+    }
+
+    // adds the food item to the meal if that move is valid
     private void AddIngredient(GameObject ingredient)
     {
         bool item_used = false;
-        int i = 0;
-        while (item_used == false && i < meal_array.Length)
+        if (meal != null && meal.Try_add_item(ingredient) == true)
         {
-            if (meal_array[i] != null
-               && meal_array[i].Try_add_item(ingredient) == true)
-            {
-                player_hand.Use_item();
-                item_used = true;
-            }
-            i++;
+            player_hand.Use_item();
+            item_used = true;
         }
         if (item_used == false)
         {
             Debug.Log("Item was not used");
             // Loudspeaker yells at you
         }
+    }
+
+    public void Meal_fulfillment()
+    {
+        meal = null;
+        Destroy(displayed_order);
+    }
+
+    public void Meal_timeout()
+    {
+        if (meal)
+        {
+            Destroy(meal);
+        }
+        Destroy(displayed_order);
     }
 }
