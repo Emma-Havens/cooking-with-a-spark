@@ -894,6 +894,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 869262868}
     m_Modifications:
+    - target: {fileID: 818338732709035989, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 1941287778347751839, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -934,14 +938,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3564105083908373849, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 1764328060}
     - target: {fileID: 7927853649317515867, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_Name
       value: Progress bar
       objectReference: {fileID: 0}
+    - target: {fileID: 8288002057578873431, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3782024162150358696, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
 --- !u!1001 &202046385
 PrefabInstance:
@@ -1699,6 +1714,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 331752746}
     m_Modifications:
+    - target: {fileID: 818338732709035989, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 1941287778347751839, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.676
@@ -1739,6 +1758,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3564105083908373849, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 760962753}
     - target: {fileID: 7927853649317515867, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_Name
       value: Progress bar
@@ -1746,7 +1769,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3782024162150358696, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
 --- !u!1001 &316906373
 PrefabInstance:
@@ -2888,6 +2914,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.017744454, y: 0.021765638, z: 0.012280281}
   m_Center: {x: 0.000002659858, y: -0.00067036273, z: -0.00038862284}
+--- !u!114 &711668886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8288002057578873431, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+  m_PrefabInstance: {fileID: 936366613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &746522012
 GameObject:
   m_ObjectHideFlags: 0
@@ -3234,6 +3271,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2070251964}
   m_SourcePrefab: {fileID: 100100000, guid: 97014aeaf511b304bbee32a00a5e06e9, type: 3}
+--- !u!114 &760962753 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8288002057578873431, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+  m_PrefabInstance: {fileID: 301374300}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &762523550
 GameObject:
   m_ObjectHideFlags: 0
@@ -4458,6 +4506,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2053210754}
     m_Modifications:
+    - target: {fileID: 818338732709035989, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 1941287778347751839, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.676
@@ -4498,6 +4550,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3564105083908373849, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 711668886}
     - target: {fileID: 7927853649317515867, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_Name
       value: Progress bar
@@ -4505,7 +4561,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3782024162150358696, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
 --- !u!1 &954568303
 GameObject:
@@ -4890,7 +4949,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 5
-  currObj: {fileID: 0}
 --- !u!1 &990555603
 GameObject:
   m_ObjectHideFlags: 0
@@ -7576,6 +7634,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1232726407}
     m_Modifications:
+    - target: {fileID: 818338732709035989, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 1941287778347751839, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.676
@@ -7616,6 +7678,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3564105083908373849, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 2081232989}
     - target: {fileID: 7927853649317515867, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_Name
       value: Progress bar
@@ -7623,7 +7689,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3782024162150358696, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
 --- !u!1001 &1668474653
 PrefabInstance:
@@ -8210,6 +8279,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae03667c0dc138f4f91588b4b55e3ea4, type: 3}
+--- !u!114 &1764328060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8288002057578873431, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+  m_PrefabInstance: {fileID: 151681652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1798575821 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3564105083908373849, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
@@ -9126,6 +9206,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.017744454, y: 0.021765638, z: 0.012280281}
   m_Center: {x: 0.000002659858, y: -0.00067036273, z: -0.00038862284}
+--- !u!114 &2081232989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8288002057578873431, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
+  m_PrefabInstance: {fileID: 1659257987}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2081737016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9320,6 +9411,10 @@ PrefabInstance:
       propertyPath: appliance
       value: 
       objectReference: {fileID: 331752747}
+    - target: {fileID: 4850135738081942397, guid: 55e9796edad5cb84e8501e7c0fe445ed, type: 3}
+      propertyPath: on
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4850135738081942397, guid: 55e9796edad5cb84e8501e7c0fe445ed, type: 3}
       propertyPath: appliance
       value: 
