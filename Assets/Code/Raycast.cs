@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Raycast : MonoBehaviour
 {
     public float maxDistance = 5.0f;
-    Interactable currObj;
-    MeshRenderer currMR;
+    GameObject currObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +26,11 @@ public class Raycast : MonoBehaviour
         {
             Interactable item;
 
-            if (currObj != null && currObj.TryGetComponent<Interactable>(out item))
+            if (currObj != null)
             {
-                item.Interact();
+                if (currObj.TryGetComponent<Interactable>(out item))
+                    item.Interact();
+
             }
         }
     }
@@ -38,51 +42,107 @@ public class Raycast : MonoBehaviour
         // if we hit something:
         if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
         {
-            Interactable obj;
+            GameObject obj = hit.transform.gameObject;
+            Interactable T;
+           
 
             // if hit an interactable:
-            if (hit.transform.gameObject.TryGetComponent<Interactable>(out obj))
+            if (obj.TryGetComponent<Interactable>(out T))
             {
-                // if no previous object: get material, turn on highlight, set curr to obj
+                // if no previous object: highlight obj, set currObj to obj
                 if (!currObj)
                 {
-                    
-                    obj.TryGetComponent<MeshRenderer>(out currMR);
-                    currMR.material.SetFloat("_Highlight", 0.5f);
+                    AddHighlight(obj);
                     currObj = obj;
 
                 }
-                // else if previous object is not the same object: turn off previous highlight, turn on current highlight, set curr to obj
+                // else if previous object is not the same object: turn off previous highlight, turn on current highlight, set currObj to obj
                 else if (!ReferenceEquals(obj, currObj))
                 {
-                    currMR.material.SetFloat("_Highlight", 0.0f);
-                    
-                    obj.TryGetComponent<MeshRenderer>(out currMR);
-                    currMR.material.SetFloat("_Highlight", 0.5f);
+
+                    RemoveHighlight(currObj);
+                    AddHighlight(obj);
                     currObj = obj;
 
+                }
+                // else, currObj is same as obj: do nothing
+
+            }
+            // else if parent is interactable: highlight parent, set currObj to parent
+            else if (obj.transform.parent != null)
+            {
+                if (obj.transform.parent.gameObject.TryGetComponent<Interactable>(out T))
+                {
+                    AddHighlight(obj.transform.parent.gameObject);
+                    currObj = obj.transform.parent.gameObject;
                 }
 
             }
-            // else, hit but no interactable: reset previous object highlight, set currObj to null
+            // else, hit but no interactable: turn off currObj highlight, set currObj to null
             else
             {
                 if (currObj)
                 {
-                    currMR.material.SetFloat("_Highlight", 0.0f);
+                    RemoveHighlight(currObj);
                     currObj = null;
                 }
             }
            
         }
-        // else, no hit: reset previous object highlight, set currObj to null
+        // else, no hit: turn off currObj highlight, set currObj to null
         else
         {
             if (currObj)
             {
-                currMR.material.SetFloat("_Highlight", 0.0f);
+                RemoveHighlight(currObj);
                 currObj = null;
             }
         }
+    }
+
+    void AddHighlight(GameObject obj)
+    {
+        MeshRenderer currMR;
+        List<Material> materials;
+
+
+        for (int i = 0; i < obj.transform.childCount; i++)
+        {
+            GameObject child = obj.transform.GetChild(i).gameObject;
+            if (child.tag != "no_highlight")
+                AddHighlight(child);
+        }
+
+        if (obj.TryGetComponent<MeshRenderer>(out currMR))
+        {
+            materials = currMR.materials.ToList();
+            foreach (Material m in materials)
+            {
+                m.SetFloat("_Highlight", 0.5f);
+            }
+        }
+
+    }
+
+    void RemoveHighlight(GameObject obj)
+    {
+        MeshRenderer currMR;
+        List<Material> materials;
+
+        for (int i = 0; i < obj.transform.childCount; i++)
+        {
+            GameObject child = obj.transform.GetChild(i).gameObject;
+            RemoveHighlight(child);
+        }
+
+        if (obj.TryGetComponent<MeshRenderer>(out currMR))
+        {
+            materials = currMR.materials.ToList();
+            foreach (Material m in materials)
+            {
+                m.SetFloat("_Highlight", 0.0f);
+            }
+        }
+
     }
 }

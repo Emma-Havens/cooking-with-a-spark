@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 3564105083908373849}
   m_Layer: 0
   m_Name: Progress bar
-  m_TagString: Untagged
+  m_TagString: no_highlight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
