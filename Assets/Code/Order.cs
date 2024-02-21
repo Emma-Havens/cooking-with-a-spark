@@ -6,7 +6,8 @@ using TMPro;
 public enum Recipe
 {
     Everything,
-    Full_meal
+    Full_meal,
+    Starter
 }
 
 public class Order : MonoBehaviour
@@ -31,6 +32,9 @@ public class Order : MonoBehaviour
     // timer object visible on screen
     TMP_Text timer;
 
+    // whether or not this order is the first order
+    bool starter_order;
+
     // needs to happen BEFORE start is run
     private void Awake()
     {
@@ -39,8 +43,11 @@ public class Order : MonoBehaviour
 
     void Start()
     {
-        Initialize_timer();
-        Set_timer();
+        if (!starter_order)
+        {
+            Initialize_timer();
+            Set_timer();
+        }
     }
 
     void Initialize_order_items()
@@ -48,12 +55,20 @@ public class Order : MonoBehaviour
         switch (this.recipe)
         {
             case Recipe.Everything:
-                time_limit = 100;
+                time_limit = 180;
+                starter_order = false;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato };
                 break;
             case Recipe.Full_meal:
-                time_limit = 110;
+                time_limit = 210;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                                  Food_type.Lettuce, Food_type.Tomato,
+                                  Food_type.Fries };
+                break;
+            case Recipe.Starter:
+                starter_order = true;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato,
                                   Food_type.Fries };
@@ -88,10 +103,13 @@ public class Order : MonoBehaviour
 
     void Update()
     {
-        Set_timer();
-        if (Time.time > start_time + time_limit)
+        if (!starter_order)
         {
-            Order_timeout();
+            Set_timer();
+            if (Time.time > start_time + time_limit)
+            {
+                Order_timeout();
+            }
         }
     }
 
@@ -119,6 +137,11 @@ public class Order : MonoBehaviour
 
     public void Order_fulfillment()
     {
+        if (starter_order)
+        {
+            Order_Manager manager = FindAnyObjectByType<Order_Manager>();
+            manager.Starter_order_done();
+        }
         // something good
         Destroy(this.gameObject);
     }

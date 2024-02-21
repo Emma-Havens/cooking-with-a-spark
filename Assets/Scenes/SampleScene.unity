@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4369242, g: 0.48458844, b: 0.56484735, a: 1}
+  m_IndirectSpecularColor: {r: 0.43692416, g: 0.48458815, b: 0.56484663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1508,7 +1508,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 99.1, y: -165.8}
+  m_AnchoredPosition: {x: 99.1, y: -155}
   m_SizeDelta: {x: 600, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281350672
@@ -1524,7 +1524,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Everything_burger_prefab: {fileID: 9013382127644869597, guid: 7da8e9c06e53f44919ad534bb181dbba, type: 3}
-  Full_meal_prefab: {fileID: 0}
+  Full_meal_prefab: {fileID: 9013382127644869597, guid: 50433b9cc19cf4f9c9296fffbaab308a, type: 3}
+  Starter_prefab: {fileID: 9013382127644869597, guid: af4f431dc68f64fb386d4b3231ca3eda, type: 3}
   max_orders: 4
   order_array: []
 --- !u!156049354 &281350673

@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 5885213864656034780}
   - component: {fileID: 8555789684884689794}
   m_Layer: 5
-  m_Name: Full_meal_order
+  m_Name: Starter_order
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,5 +358,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4389110b6a4954ca78301c0f8974c392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipe: 1
+  recipe: 2
   order_items: 

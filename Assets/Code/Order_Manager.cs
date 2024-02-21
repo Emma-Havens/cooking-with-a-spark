@@ -7,6 +7,7 @@ public class Order_Manager : MonoBehaviour
 {
     public GameObject Everything_burger_prefab;
     public GameObject Full_meal_prefab;
+    public GameObject Starter_prefab;
 
     // the maximum number of orders a player can be given at a time
     public int max_orders = 4;
@@ -24,10 +25,10 @@ public class Order_Manager : MonoBehaviour
     bool orders_full = false;
 
     // true if order waiting coroutine is running
-    bool waiting = false;
+    bool waiting = true;
 
     // base time to wait between orders
-    float wait_time = 70;
+    float wait_time = 120;
 
     // transform of the order box (area where orders are displayed)
     RectTransform box_transform;
@@ -42,6 +43,7 @@ public class Order_Manager : MonoBehaviour
         order_array = new GameObject[max_orders];
         slot_array = new Vector3[max_orders];
         Fill_slot_array();
+        Get_starter_order();
     }
 
     // used in initialization. Calculates positions on canvas for orders
@@ -60,6 +62,16 @@ public class Order_Manager : MonoBehaviour
             slot_array[i] = new Vector3(x_val, y_val, 1);
             x_val += cell_width;
         }
+    }
+
+    void Get_starter_order()
+    {
+        Generate_order(Starter_prefab);
+    }
+
+    public void Starter_order_done()
+    {
+        waiting = false;
     }
 
     private void Update()
@@ -113,7 +125,6 @@ public class Order_Manager : MonoBehaviour
             {
                 j++;
             }
-            Debug.Log(j);
             order.GetComponent<Order>().Assign_assembly_station(assembly_stations[j]);
         }
     }

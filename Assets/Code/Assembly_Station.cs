@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Timeline.Actions.MenuPriority;
+using TMPro;
 
 public class Assembly_Station : Counter
 {
@@ -57,6 +58,12 @@ public class Assembly_Station : Counter
         Sprite order_sprite = displayed_order.GetComponent<Image>().sprite;
         Destroy(displayed_order.GetComponent<Image>());
         Destroy(displayed_order.GetComponent<CanvasRenderer>());
+        //TMP_Text[] children = GetComponentsInChildren<TMP_Text>();
+        //foreach (TMP_Text child in children) {
+        //    child.gameObject.AddComponent<MeshRenderer>();
+        //    Destroy(child.gameObject.GetComponent<CanvasRenderer>());
+        //    // child.gameObject.GetComponent<Transform>().localPosition
+        //}
         SpriteRenderer rend = displayed_order.AddComponent<SpriteRenderer>();
         rend.sprite = order_sprite;
         RectTransform trans = displayed_order.GetComponent<RectTransform>();
