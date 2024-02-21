@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4369242, g: 0.48458844, b: 0.56484735, a: 1}
+  m_IndirectSpecularColor: {r: 0.43692416, g: 0.48458815, b: 0.56484663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2524,6 +2524,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Meal_prefab: {fileID: 8500540838675931692, guid: 83fd13e81ba8482419c4183da5afa1c5, type: 3}
   Order_prefab: {fileID: 0}
+  assembly_active: {fileID: 2100000, guid: 8e5ea0cea1305400dae4219ffae3ca1b, type: 2}
+  assembly_inactive: {fileID: 2100000, guid: d683e0ac9495d402692211b14a980771, type: 2}
   meal: {fileID: 0}
 --- !u!65 &557617647
 BoxCollider:
@@ -3535,6 +3537,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Meal_prefab: {fileID: 8500540838675931692, guid: 83fd13e81ba8482419c4183da5afa1c5, type: 3}
   Order_prefab: {fileID: 0}
+  assembly_active: {fileID: 2100000, guid: 8e5ea0cea1305400dae4219ffae3ca1b, type: 2}
+  assembly_inactive: {fileID: 2100000, guid: d683e0ac9495d402692211b14a980771, type: 2}
   meal: {fileID: 0}
 --- !u!65 &779851740
 BoxCollider:
@@ -6803,6 +6807,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Meal_prefab: {fileID: 8500540838675931692, guid: 83fd13e81ba8482419c4183da5afa1c5, type: 3}
   Order_prefab: {fileID: 0}
+  assembly_active: {fileID: 2100000, guid: 8e5ea0cea1305400dae4219ffae3ca1b, type: 2}
+  assembly_inactive: {fileID: 2100000, guid: d683e0ac9495d402692211b14a980771, type: 2}
   meal: {fileID: 0}
 --- !u!65 &1458554198
 BoxCollider:
@@ -8258,6 +8264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Meal_prefab: {fileID: 8500540838675931692, guid: 83fd13e81ba8482419c4183da5afa1c5, type: 3}
   Order_prefab: {fileID: 0}
+  assembly_active: {fileID: 2100000, guid: 8e5ea0cea1305400dae4219ffae3ca1b, type: 2}
+  assembly_inactive: {fileID: 2100000, guid: d683e0ac9495d402692211b14a980771, type: 2}
   meal: {fileID: 0}
 --- !u!65 &1817295719
 BoxCollider:

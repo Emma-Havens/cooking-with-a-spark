@@ -12,11 +12,23 @@ public class Assembly_Station : Counter
     public GameObject Meal_prefab;
     public GameObject Order_prefab;
 
+    public Material assembly_active;
+    public Material assembly_inactive;
+
+    MeshRenderer rend;
+
     // meals active in assembly station
     public Meal meal;
 
     // the order card visible above the assembly station
     GameObject displayed_order;
+
+    // called before start
+    private void Awake()
+    {
+        rend = GetComponent<MeshRenderer>();
+        rend.material = assembly_inactive;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +60,8 @@ public class Assembly_Station : Counter
             Order_prefab = order;
             displayed_order = Instantiate(Order_prefab, this.transform, false);
             transform_order();
+            rend.material = assembly_active;
+            Debug.Log(rend.material);
             return true;
         }
         return false;
@@ -91,6 +105,7 @@ public class Assembly_Station : Counter
     public void Meal_fulfillment()
     {
         meal = null;
+        rend.material = assembly_inactive;
         Destroy(displayed_order);
     }
 
@@ -100,6 +115,7 @@ public class Assembly_Station : Counter
         {
             Destroy(meal);
         }
+        rend.material = assembly_inactive;
         Destroy(displayed_order);
     }
 }
