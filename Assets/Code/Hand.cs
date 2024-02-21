@@ -15,7 +15,7 @@ public class Hand : MonoBehaviour
         if (item != null)
         {
             //moving object in front of player, and rotating it with the player
-            item.transform.position = cam.transform.position + cam.transform.forward + Vector3.Scale(cam.transform.right - cam.transform.up, new Vector3(.5f, .5f, .5f));
+            item.transform.position = cam.transform.position + cam.transform.forward + Vector3.Scale(- cam.transform.right - cam.transform.up, new Vector3(.5f, .5f, .5f));
             item.transform.rotation = Quaternion.Euler(cam.transform.rotation.eulerAngles.x, cam.transform.rotation.eulerAngles.y, 0);
         }
     }
