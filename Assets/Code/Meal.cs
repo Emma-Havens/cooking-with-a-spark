@@ -107,7 +107,7 @@ public class Meal : MonoBehaviour
     {
 
         Vector3 pos = new Vector3(transform.position.x, meal_height, transform.position.z);
-        GameObject top_bun = Instantiate(bun_prefab, pos, Quaternion.identity);
+        //GameObject top_bun = Instantiate(bun_prefab, pos, Quaternion.identity);
 
         order.Order_fulfillment();
         Debug.Log("Finished");
@@ -115,7 +115,7 @@ public class Meal : MonoBehaviour
         yield return new WaitForSecondsRealtime(3);
 
         station.Meal_fulfillment();
-        Destroy(top_bun);
+        //Destroy(top_bun);
         Destroy(this.gameObject);
     }
 
