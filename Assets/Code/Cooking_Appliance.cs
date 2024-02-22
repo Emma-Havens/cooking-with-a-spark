@@ -85,6 +85,7 @@ public class Cooking_appliance : Interactable
 
         cooking_item.transform.position = transform.position + new Vector3(0, 2, 0);
         cooking_item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+        cooking_item.GetComponent<BoxCollider>().enabled = false;
     }
 
     public void StopCooking()
