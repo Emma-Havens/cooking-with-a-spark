@@ -13,9 +13,11 @@ public enum State
 
 public class Food_Item : Hand_Item
 {
-
+    
     public State state;      // either Raw, Processed, or Ruined
     public Food_type type;   // either Burger, Bun, Lettuce, Tomato, Fries
+
+    public GameObject nextStage;
 
     void Start()
     {
@@ -23,21 +25,6 @@ public class Food_Item : Hand_Item
         item_collider = GetComponent<BoxCollider>();
         item_renderer = GetComponent<MeshRenderer>();
 
-        state = State.Raw;
-        //Debug.Log(state);
-        //Debug.Log(type);
-    }
-
-    // appliances call this to cook or chop food items
-    public void Process_food()
-    {
-        state = State.Processed;
-    }
-
-    // appliances call this to burn or ruin food items
-    public void Ruin_food()
-    {
-        state = State.Ruined;
     }
 
     public Appliance_Type get_compatible()
@@ -45,4 +32,5 @@ public class Food_Item : Hand_Item
         var kitchen_types = FindObjectOfType<Kitchen_Types>().GetComponent<Kitchen_Types>();
         return kitchen_types.Compatible_Food[type];
     }
+
 }

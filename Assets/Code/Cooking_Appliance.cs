@@ -10,7 +10,7 @@ public class Cooking_appliance : Interactable
     //when electricity is implemented, the default should be false
     public bool is_powered = false;
 
-    GameObject cooking_item = null;
+    Food_Item cooking_item = null;
 
     //public so you can watch in editor, and updating progress bar
     public int cook_progress = 0;
@@ -65,7 +65,7 @@ public class Cooking_appliance : Interactable
             {
                 Debug.Log("beginning cooking");
 
-                cooking_item = new_obj;
+                cooking_item = new_item;
                 player_hand.Use_item();
                 StartCooking(cooking_item);
 
@@ -79,7 +79,7 @@ public class Cooking_appliance : Interactable
         }
     }
 
-    public void StartCooking(GameObject to_cook)
+    public void StartCooking(Food_Item to_cook)
     {
         cooking_item = to_cook;
 
@@ -91,11 +91,11 @@ public class Cooking_appliance : Interactable
     {
         cook_progress = 0;
 
-        GameObject temp_item = cooking_item;
+        Food_Item temp_item = cooking_item;
         cooking_item = null;
 
         //return temp_item;
-        player_hand.item = temp_item;
+        temp_item.Interact();
     }
 
     //increments cook_progress by cook_speed
@@ -107,12 +107,23 @@ public class Cooking_appliance : Interactable
         if (cook_progress >= ruined)
         {
             Debug.Log("food ruined!");
-            cooking_item.GetComponent<Food_Item>().Ruin_food();
+            if (cooking_item.state != State.Ruined)
+            {
+                GameObject new_food = Instantiate(cooking_item.nextStage, new Vector3(0, 0, 0), Quaternion.identity);
+                Destroy(cooking_item.gameObject);
+                cooking_item = new_food.GetComponent<Food_Item>();
+            }
         }
         else if (cook_progress >= processed)
         {
             Debug.Log("food cooked!");
-            cooking_item.GetComponent<Food_Item>().Process_food();
+            if (cooking_item.state != State.Processed)
+            {
+                GameObject new_food = Instantiate(cooking_item.nextStage, new Vector3(0, 0, 0), Quaternion.identity);
+                Destroy(cooking_item.gameObject);
+                cooking_item = new_food.GetComponent<Food_Item>();
+            }
+
         }
     }
 }

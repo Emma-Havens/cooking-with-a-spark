@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   type: 4
+  nextStage: {fileID: 6116009781364654988, guid: 6b235fcac8fb89346bf47a357f758074, type: 3}
 --- !u!23 &7104983613783039884
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43692416, g: 0.48458815, b: 0.56484663, a: 1}
+  m_IndirectSpecularColor: {r: 0.4369242, g: 0.48458844, b: 0.56484735, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1997,7 +1997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a15742024b503746aae8c7cbb8b1670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodprefab: {fileID: 8113860419827784608, guid: b1577e153cc3d4db08ea5ed5346b66ff, type: 3}
+  foodprefab: {fileID: 2424186074671229813, guid: f4dcde02ff4d60f49a608cc12772d2d3, type: 3}
 --- !u!1001 &418300735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3665,7 +3665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a15742024b503746aae8c7cbb8b1670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodprefab: {fileID: 8113860419827784608, guid: 02ec896957b854ad3a1ffbc29c3509cc, type: 3}
+  foodprefab: {fileID: 8651337308316257579, guid: 562cca7905dba27449b01db7b1666b60, type: 3}
 --- !u!4 &782850850 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 1fff77d5b015c8e43bbc771440109276, type: 3}
@@ -4554,7 +4554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1941287778347751839, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68900824
+      value: -0.102
       objectReference: {fileID: 0}
     - target: {fileID: 1941287778347751839, guid: a52e7385b97591b48a6d7cf0beaf8a75, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5433,7 +5433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a15742024b503746aae8c7cbb8b1670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodprefab: {fileID: 8113860419827784608, guid: 360833d728f274a7ba838b0f8fa20197, type: 3}
+  foodprefab: {fileID: 5941563200595436502, guid: 7ff764f600c50f447a0f427119a902cb, type: 3}
 --- !u!65 &1147692002
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5553,7 +5553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a15742024b503746aae8c7cbb8b1670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodprefab: {fileID: 8113860419827784608, guid: e8bd974f851454ef1a14dd6f7361f524, type: 3}
+  foodprefab: {fileID: 2840216588282712328, guid: 57107a76ed890424180964850009a089, type: 3}
 --- !u!65 &1152256470
 BoxCollider:
   m_ObjectHideFlags: 0
