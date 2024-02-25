@@ -9,6 +9,12 @@ public class Raycast : MonoBehaviour
     public float maxDistance = 5.0f;
     GameObject currObj;
 
+    private float yaw = 0.0f;
+    private float pitch = 0.0f;
+
+    private float yawSpeed = 4.0f;
+    private float pitchSpeed = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +26,11 @@ public class Raycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        yaw += yawSpeed * Input.GetAxis("Mouse X");
+        pitch -= pitchSpeed * Input.GetAxis("Mouse Y");
+
+        transform.rotation = Quaternion.Euler(pitch, yaw, 0);
+
         CastRay();
 
         if (Input.GetKeyDown(KeyCode.E))

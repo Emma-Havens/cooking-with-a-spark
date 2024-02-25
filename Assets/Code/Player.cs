@@ -5,15 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
-
-    private float yawSpeed = 4.0f;
-    private float pitchSpeed = 2.0f;
 
     private Rigidbody playerRB;
 
     private float MoveSpeed = 10.0f;
+
+    public Camera cam;
 
     void Start()
     {
@@ -25,8 +22,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        yaw += yawSpeed * Input.GetAxis("Mouse X");
-        pitch -= pitchSpeed * Input.GetAxis("Mouse Y");
         
         playerRB.velocity = Vector3.zero;
 
@@ -49,10 +44,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) vertical = -MoveSpeed * Time.fixedDeltaTime;
         else if (Input.GetKey(KeyCode.W)) vertical = MoveSpeed * Time.fixedDeltaTime;
 
-        Vector3 forward = new Vector3(transform.forward.x, 0, transform.forward.z);
-        Vector3 right = new Vector3(transform.right.x, 0, transform.right.z);
+        Vector3 forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+        Vector3 right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
 
-        playerRB.MoveRotation(Quaternion.Euler(pitch, yaw, 0));
+        playerRB.MoveRotation(Quaternion.identity);
         playerRB.MovePosition(transform.position + (right * horizontal) + (forward * vertical));
 
     }
