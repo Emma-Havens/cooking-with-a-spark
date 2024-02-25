@@ -28,10 +28,12 @@ public class Order_Manager : MonoBehaviour
     bool waiting = true;
 
     // base time to wait between orders
-    float wait_time = 120;
+    float wait_time = 90;
 
     // transform of the order box (area where orders are displayed)
     RectTransform box_transform;
+
+    AudioSource audio_s;
 
     // assembly station references. There SHOULD be as many stations as max_orders
     Assembly_Station[] assembly_stations;
@@ -39,6 +41,7 @@ public class Order_Manager : MonoBehaviour
     void Start()
     {
         box_transform = GetComponent<RectTransform>();
+        audio_s = GetComponent<AudioSource>();
         assembly_stations = FindObjectsByType<Assembly_Station>(FindObjectsSortMode.None);
         order_array = new GameObject[max_orders];
         slot_array = new Vector3[max_orders];
@@ -126,6 +129,7 @@ public class Order_Manager : MonoBehaviour
                 j++;
             }
             order.GetComponent<Order>().Assign_assembly_station(assembly_stations[j]);
+            audio_s.Play(0);
         }
     }
 }

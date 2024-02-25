@@ -112,7 +112,7 @@ public class Meal : MonoBehaviour
         order.Order_fulfillment();
         Debug.Log("Finished");
 
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(1);
 
         station.Meal_fulfillment();
         //Destroy(top_bun);

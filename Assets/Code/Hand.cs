@@ -5,10 +5,19 @@ using static UnityEditor.Progress;
 
 public class Hand : MonoBehaviour
 {
+    public AudioClip use_item;
+    public AudioClip no_use_item;
+
+    AudioSource audio_s;
 
     public GameObject item = null;     // player can only hold one thing at a time
 
     public Camera cam;
+
+    private void Start()
+    {
+        audio_s = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -30,9 +39,11 @@ public class Hand : MonoBehaviour
             item.GetComponent<Collider>().enabled = false;
             pick_up = true;
             Debug.Log("item has been picked up");
+            audio_s.PlayOneShot(use_item, .4f);
         } else
         {
             Debug.Log("item has not been picked up");
+            audio_s.PlayOneShot(no_use_item, .1f);
         }
         return pick_up;
     }
@@ -48,6 +59,7 @@ public class Hand : MonoBehaviour
             obj = item;
             item = null;
             Debug.Log("item has been used");
+            audio_s.PlayOneShot(use_item, .4f);
         } else
         {
             Debug.Log("no item currently in hand");
