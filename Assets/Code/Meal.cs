@@ -110,11 +110,11 @@ public class Meal : MonoBehaviour
         GameObject top_bun = Instantiate(bun_prefab, pos, Quaternion.identity);
 
         order.Order_fulfillment();
+        station.Meal_fulfillment();
         Debug.Log("Finished");
 
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(1);
 
-        station.Meal_fulfillment();
         Destroy(top_bun);
         Destroy(this.gameObject);
     }

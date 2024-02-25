@@ -15,7 +15,13 @@ public class Assembly_Station : Counter
     public Material assembly_active;
     public Material assembly_inactive;
 
+    public AudioClip meal_fulfilment;
+    public AudioClip meal_timeout;
+    public AudioClip wrong_item;
+
     MeshRenderer rend;
+
+    AudioSource audio_s;
 
     // meals active in assembly station
     public Meal meal;
@@ -28,6 +34,7 @@ public class Assembly_Station : Counter
     {
         rend = GetComponent<MeshRenderer>();
         rend.material = assembly_inactive;
+        audio_s = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -98,12 +105,17 @@ public class Assembly_Station : Counter
         if (item_used == false)
         {
             Debug.Log("Item was not used");
-            // Loudspeaker yells at you
+            audio_s.PlayOneShot(wrong_item, .1f);
         }
     }
 
     public void Meal_fulfillment()
     {
+        audio_s.clip = meal_fulfilment;
+        if (!audio_s.isPlaying)
+        {
+            audio_s.Play(0);
+        }
         meal = null;
         rend.material = assembly_inactive;
         Destroy(displayed_order);
@@ -111,6 +123,11 @@ public class Assembly_Station : Counter
 
     public void Meal_timeout()
     {
+        audio_s.clip = meal_timeout;
+        if (!audio_s.isPlaying)
+        {
+            audio_s.Play(0);
+        }
         if (meal)
         {
             Destroy(meal);
