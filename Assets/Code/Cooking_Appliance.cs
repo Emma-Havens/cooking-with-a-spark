@@ -114,7 +114,7 @@ public class Cooking_appliance : Interactable
         cooking_item = null;
 
         //return temp_item;
-        player_hand.Pick_up_item(temp_item);
+        temp_item.Interact();
 
         if (audio_s.isPlaying)
         {
@@ -139,8 +139,16 @@ public class Cooking_appliance : Interactable
                 //audio_s.clip = food_ruined;
                 audio_s.PlayOneShot(food_ruined);
             }
-            cooking_item.GetComponent<Food_Item>().Ruin_food();
+
+            if (cooking_item.state != State.Ruined)
+            {
+                GameObject new_food = Instantiate(cooking_item.nextStage, new Vector3(0, 0, 0), Quaternion.identity);
+                Destroy(cooking_item.gameObject);
+                cooking_item = new_food.GetComponent<Food_Item>();
+            }
         }
+
+
         else if (cook_progress >= processed)
         {
             Debug.Log("food cooked!");
@@ -151,7 +159,13 @@ public class Cooking_appliance : Interactable
                 audio_s.PlayOneShot(food_processed, .7f);
                 already_played_processed = true;
             }
-            cooking_item.GetComponent<Food_Item>().Process_food();
+
+            if (cooking_item.state != State.Processed)
+            {
+                GameObject new_food = Instantiate(cooking_item.nextStage, new Vector3(0, 0, 0), Quaternion.identity);
+                Destroy(cooking_item.gameObject);
+                cooking_item = new_food.GetComponent<Food_Item>();
+            }
         }
     }
 }
