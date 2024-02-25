@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,10 +57,16 @@ public class Cooking_appliance : Interactable
             child2.SetActive(false);
         }
         else if (type == Appliance_Type.Toaster)
-            {
-                child1 = transform.GetChild(2).gameObject;
-                child1.SetActive(false);
-            }
+        {
+            child1 = transform.GetChild(2).gameObject;
+            child1.SetActive(false);
+        }
+        else if (type == Appliance_Type.Stove)
+        {
+            child1 = transform.GetChild(9).gameObject;
+            child1.SetActive(false);
+
+        }
     }
 
     private void FixedUpdate()
@@ -131,8 +138,16 @@ public class Cooking_appliance : Interactable
         {
             cooking_item.transform.position = transform.position + new Vector3(0, 0.3f, 0);
         }
-        else
+        else if (type == Appliance_Type.Stove)
         {
+            child1.SetActive(true);
+            cooking_item.transform.position = transform.position + new Vector3(0.4f,1.5f,0.4f);
+            cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+
+        }
+        else
+                {
 
             cooking_item.transform.position = transform.position;
             cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -167,6 +182,10 @@ public class Cooking_appliance : Interactable
             child2.SetActive(false);
         }
         else if (type == Appliance_Type.Toaster)
+        {
+            child1.SetActive(false);
+        }
+        else if (type == Appliance_Type.Stove)
         {
             child1.SetActive(false);
         }
@@ -230,8 +249,4 @@ public class Cooking_appliance : Interactable
         }
     }
 
-    public void SetChildrenObjects()
-    {
-        
-    }
 }
