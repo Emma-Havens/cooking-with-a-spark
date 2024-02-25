@@ -6,6 +6,12 @@ using static UnityEditor.Progress;
 
 public class Cooking_appliance : Interactable
 {
+    public AudioClip food_processed;
+    public AudioClip food_ruined;
+    public AudioClip food_cooking;
+    public AudioClip food_incompatible;
+
+
     //whether the appliance is plugged in or not
     //when electricity is implemented, the default should be false
     public bool is_powered = false;
@@ -24,6 +30,10 @@ public class Cooking_appliance : Interactable
 
     private Hand player_hand = null;
 
+    AudioSource audio_s;
+    bool already_played_processed = false;
+    bool playing_ruined = false;
+
     public Appliance_Type type;
 
     public Progress_Bar prog_bar;
@@ -31,6 +41,7 @@ public class Cooking_appliance : Interactable
     private void Start()
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
+        audio_s = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -75,7 +86,12 @@ public class Cooking_appliance : Interactable
             else
             {
                 Debug.Log("incompatible food");
+                audio_s.PlayOneShot(food_incompatible, .1f);
             }
+        }
+        else
+        {
+            audio_s.PlayOneShot(food_incompatible, .1f);
         }
     }
 
@@ -86,6 +102,8 @@ public class Cooking_appliance : Interactable
         cooking_item.transform.position = transform.position + new Vector3(0, 2, 0);
         cooking_item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         cooking_item.GetComponent<BoxCollider>().enabled = false;
+
+        //audio_s.clip = food_cooking;
     }
 
     public void StopCooking()
@@ -96,7 +114,14 @@ public class Cooking_appliance : Interactable
         cooking_item = null;
 
         //return temp_item;
-        player_hand.item = temp_item;
+        player_hand.Pick_up_item(temp_item);
+
+        if (audio_s.isPlaying)
+        {
+            audio_s.Stop();
+        }
+        already_played_processed = false;
+        playing_ruined = false;
     }
 
     //increments cook_progress by cook_speed
@@ -104,15 +129,32 @@ public class Cooking_appliance : Interactable
     private void IncrementCook()
     {
         cook_progress += cook_speed;
+        if (!already_played_processed && !playing_ruined && !audio_s.isPlaying)
+        {
+            audio_s.PlayOneShot(food_cooking, .07f);
+        }
 
         if (cook_progress >= ruined)
         {
             Debug.Log("food ruined!");
+            playing_ruined = true;
+            if (!audio_s.isPlaying)
+            {
+                //audio_s.clip = food_ruined;
+                audio_s.PlayOneShot(food_ruined);
+            }
             cooking_item.GetComponent<Food_Item>().Ruin_food();
         }
         else if (cook_progress >= processed)
         {
             Debug.Log("food cooked!");
+            if (!already_played_processed)
+            {
+                //audio_s.clip = food_processed;
+                audio_s.Stop();
+                audio_s.PlayOneShot(food_processed, .7f);
+                already_played_processed = true;
+            }
             cooking_item.GetComponent<Food_Item>().Process_food();
         }
     }

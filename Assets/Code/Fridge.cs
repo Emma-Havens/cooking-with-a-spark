@@ -34,11 +34,11 @@ public class Fridge : Interactable
         if (is_powered)
         {
             Debug.Log("fridge use detected");
+            GameObject new_food = Instantiate(foodprefab, new Vector3(0, 0, 0), Quaternion.identity);
 
-            if (player_hand.In_hand() == null)
+            if (!player_hand.Pick_up_item(new_food))
             {
-                GameObject new_food = Instantiate(foodprefab, new Vector3(0, 0, 0), Quaternion.identity);
-                player_hand.Pick_up_item(new_food);
+                Destroy(new_food);
             }
 
         }
