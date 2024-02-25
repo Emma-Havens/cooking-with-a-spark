@@ -19,8 +19,6 @@ public class Cooking_appliance : Interactable
 
     Food_Item cooking_item = null;
 
-
-
     //public so you can watch in editor, and updating progress bar
     public int cook_progress = 0;
 
@@ -65,7 +63,11 @@ public class Cooking_appliance : Interactable
         {
             child1 = transform.GetChild(9).gameObject;
             child1.SetActive(false);
-
+        }
+        else if (type == Appliance_Type.Chopper)
+        {
+            child1 = transform.GetChild(2).gameObject;
+            child1.SetActive(false);
         }
     }
 
@@ -132,30 +134,28 @@ public class Cooking_appliance : Interactable
         else if (type == Appliance_Type.Toaster)
         {
             cooking_item.transform.position = transform.position + new Vector3(0,-1,0);
+            cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
             child1.SetActive(true);
         }
         else if (type == Appliance_Type.Chopper)
         {
             cooking_item.transform.position = transform.position + new Vector3(0, 0.3f, 0);
+            cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (type == Appliance_Type.Stove)
         {
             child1.SetActive(true);
             cooking_item.transform.position = transform.position + new Vector3(0.4f,1.5f,0.4f);
             cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
-
-
         }
-        else
-                {
+        
+        //cooking_item.transform.position = transform.position;
+        //cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-            cooking_item.transform.position = transform.position;
-            cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
+        cooking_item.GetComponent<BoxCollider>().enabled = false;
 
-            cooking_item.GetComponent<BoxCollider>().enabled = false;
-
-            //audio_s.clip = food_cooking;
-        }
+        //audio_s.clip = food_cooking;
+        
         
     }
 
@@ -189,6 +189,11 @@ public class Cooking_appliance : Interactable
         {
             child1.SetActive(false);
         }
+        else if (type == Appliance_Type.Chopper)
+        {
+            child1.SetActive(false);
+        }
+        
     }
 
     //increments cook_progress by cook_speed
@@ -203,7 +208,11 @@ public class Cooking_appliance : Interactable
             child1.SetActive(true);
             child2.SetActive(true);
         }
-        
+        else if (type == Appliance_Type.Chopper)
+        {
+            child1.SetActive(true);
+        }
+
 
         if (!already_played_processed && !playing_ruined && !audio_s.isPlaying)
         {
