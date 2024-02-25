@@ -34,7 +34,6 @@ public class Hand_Item : Interactable
     {
         if (player_hand.Pick_up_item(this.gameObject))
         {
-            item_collider.enabled = false;
 
             if (counter != null)
                 counter.TakeFood();

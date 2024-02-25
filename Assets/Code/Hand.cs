@@ -36,6 +36,7 @@ public class Hand : MonoBehaviour
         if (item == null && obj.GetComponent<Hand_Item>() != null)
         {
             item = obj;
+            item.GetComponent<Collider>().enabled = false;
             pick_up = true;
             Debug.Log("item has been picked up");
             audio_s.PlayOneShot(use_item, .4f);
@@ -54,6 +55,7 @@ public class Hand : MonoBehaviour
         GameObject obj = null;
         if (item != null)
         {
+            item.GetComponent<Collider>().enabled = true;
             obj = item;
             item = null;
             Debug.Log("item has been used");
