@@ -18,6 +18,8 @@ public class Cooking_appliance : Interactable
 
     Food_Item cooking_item = null;
 
+
+
     //public so you can watch in editor, and updating progress bar
     public int cook_progress = 0;
 
@@ -38,10 +40,26 @@ public class Cooking_appliance : Interactable
 
     public Progress_Bar prog_bar;
 
+    private GameObject child1 = null;
+    private GameObject child2 = null;
+
     private void Start()
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
         audio_s = GetComponent<AudioSource>();
+
+        if (type == Appliance_Type.Fryer)
+        {
+            child1 = transform.GetChild(2).gameObject;
+            child2 = transform.GetChild(3).gameObject;
+            child1.SetActive(false);
+            child2.SetActive(false);
+        }
+        else if (type == Appliance_Type.Toaster)
+            {
+                child1 = transform.GetChild(2).gameObject;
+                child1.SetActive(false);
+            }
     }
 
     private void FixedUpdate()
@@ -99,11 +117,31 @@ public class Cooking_appliance : Interactable
     {
         cooking_item = to_cook;
 
-        cooking_item.transform.position = transform.position + new Vector3(0, 2, 0);
-        cooking_item.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        cooking_item.GetComponent<BoxCollider>().enabled = false;
+        if (type == Appliance_Type.Fryer)
+        {
+            cooking_item.transform.position = transform.position + new Vector3(5, 0, 1);
+            cooking_item.transform.rotation = Quaternion.Euler(90, 0, 0);
+        }
+        else if (type == Appliance_Type.Toaster)
+        {
+            cooking_item.transform.position = transform.position + new Vector3(0,-1,0);
+            child1.SetActive(true);
+        }
+        else if (type == Appliance_Type.Chopper)
+        {
+            cooking_item.transform.position = transform.position + new Vector3(0, 0.3f, 0);
+        }
+        else
+        {
 
-        //audio_s.clip = food_cooking;
+            cooking_item.transform.position = transform.position;
+            cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            cooking_item.GetComponent<BoxCollider>().enabled = false;
+
+            //audio_s.clip = food_cooking;
+        }
+        
     }
 
     public void StopCooking()
@@ -122,6 +160,16 @@ public class Cooking_appliance : Interactable
         }
         already_played_processed = false;
         playing_ruined = false;
+
+        if (type == Appliance_Type.Fryer)
+        {
+            child1.SetActive(false);
+            child2.SetActive(false);
+        }
+        else if (type == Appliance_Type.Toaster)
+        {
+            child1.SetActive(false);
+        }
     }
 
     //increments cook_progress by cook_speed
@@ -129,6 +177,19 @@ public class Cooking_appliance : Interactable
     private void IncrementCook()
     {
         cook_progress += cook_speed;
+
+
+        if (type == Appliance_Type.Fryer)
+        {
+            child1.SetActive(true);
+            child2.SetActive(true);
+        }
+        
+
+        if (!already_played_processed && !playing_ruined && !audio_s.isPlaying)
+        {
+            audio_s.PlayOneShot(food_cooking, .07f);
+        }
 
         if (cook_progress >= ruined)
         {
@@ -167,5 +228,10 @@ public class Cooking_appliance : Interactable
                 cooking_item = new_food.GetComponent<Food_Item>();
             }
         }
+    }
+
+    public void SetChildrenObjects()
+    {
+        
     }
 }
