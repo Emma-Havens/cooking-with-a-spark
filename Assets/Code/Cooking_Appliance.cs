@@ -128,7 +128,7 @@ public class Cooking_appliance : Interactable
 
         if (type == Appliance_Type.Fryer)
         {
-            cooking_item.transform.position = transform.position + new Vector3(5, 0, 1);
+            cooking_item.transform.position = transform.position + new Vector3(5, -1, 1);
             cooking_item.transform.rotation = Quaternion.Euler(90, 0, 0);
         }
         else if (type == Appliance_Type.Toaster)
@@ -249,7 +249,7 @@ public class Cooking_appliance : Interactable
                 already_played_processed = true;
             }
 
-            if (cooking_item.state != State.Processed)
+            if (cooking_item.state == State.Raw)
             {
                 GameObject new_food = Instantiate(cooking_item.nextStage, new Vector3(0, 0, 0), Quaternion.identity);
                 Destroy(cooking_item.gameObject);

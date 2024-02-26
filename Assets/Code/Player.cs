@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody playerRB;
 
-    private float MoveSpeed = 10.0f;
+    private float MoveSpeed = 8.0f;
 
     public Camera cam;
 
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody>();
 
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
