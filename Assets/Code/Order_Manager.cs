@@ -47,6 +47,7 @@ public class Order_Manager : MonoBehaviour
         slot_array = new Vector3[max_orders];
         Fill_slot_array();
         Get_starter_order();
+        //Starter_order_done();
     }
 
     // used in initialization. Calculates positions on canvas for orders

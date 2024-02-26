@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,7 +66,7 @@ public class Assembly_Station : Counter
             meal.Set_order_at_station(order, this);
             Order_prefab = order;
             displayed_order = Instantiate(Order_prefab, this.transform, false);
-            transform_order();
+            StartCoroutine(transform_order(order));
             rend.material = assembly_active;
             Debug.Log(rend.material);
             return true;
@@ -74,17 +74,36 @@ public class Assembly_Station : Counter
         return false;
     }
 
-    void transform_order()
+    IEnumerator transform_order(GameObject canvas_order)
     {
         Sprite order_sprite = displayed_order.GetComponent<Image>().sprite;
         Destroy(displayed_order.GetComponent<Image>());
         Destroy(displayed_order.GetComponent<CanvasRenderer>());
-        //TMP_Text[] children = GetComponentsInChildren<TMP_Text>();
-        //foreach (TMP_Text child in children) {
-        //    child.gameObject.AddComponent<MeshRenderer>();
-        //    Destroy(child.gameObject.GetComponent<CanvasRenderer>());
-        //    // child.gameObject.GetComponent<Transform>().localPosition
-        //}
+
+        foreach (Transform child in displayed_order.transform)
+        {
+            String text = child.gameObject.GetComponent<TMP_Text>().text;
+            bool isTimer = child.gameObject.CompareTag("timer");
+            Destroy(child.gameObject.GetComponent<TextMeshProUGUI>());
+            yield return new WaitForEndOfFrame();
+
+            Destroy(child.gameObject.GetComponent<CanvasRenderer>());
+            child.gameObject.AddComponent<MeshRenderer>();
+            child.gameObject.AddComponent<TextMeshPro>();
+            child.gameObject.GetComponent<TMP_Text>().text = text;
+            child.gameObject.GetComponent<TMP_Text>().alignment = TextAlignmentOptions.Center;
+            if (isTimer)
+            {
+                canvas_order.GetComponent<Order>().Set_displayed_timer(child.GetComponent<TMP_Text>());
+                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, -3.5f, -0.1f);
+                child.gameObject.GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            } else
+            {
+                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, 3.8f, -0.1f);
+                child.gameObject.GetComponent<Transform>().localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            }
+        }
+
         SpriteRenderer rend = displayed_order.AddComponent<SpriteRenderer>();
         rend.sprite = order_sprite;
         RectTransform trans = displayed_order.GetComponent<RectTransform>();

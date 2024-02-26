@@ -32,6 +32,9 @@ public class Order : MonoBehaviour
     // timer object visible on screen
     TMP_Text timer;
 
+    // the timer of the order in scene above assembly station
+    TMP_Text displayed_order_timer;
+
     // whether or not this order is the first order
     bool starter_order;
 
@@ -98,7 +101,11 @@ public class Order : MonoBehaviour
     public void Assign_assembly_station(Assembly_Station station)
     {
         assembly_station = station;
-        Debug.Log(station);
+    }
+
+    public void Set_displayed_timer(TMP_Text displayed)
+    {
+        displayed_order_timer = displayed;
     }
 
     void Update()
@@ -121,6 +128,10 @@ public class Order : MonoBehaviour
         float seconds = Mathf.FloorToInt(cur_time % 60);
         string time = string.Format("{0:00}:{1:00}", minutes, seconds);
         timer.text = time;
+        if (displayed_order_timer)
+        {
+            displayed_order_timer.text = time;
+        }
     }
 
     // called when order timer runs out
