@@ -95,11 +95,11 @@ public class Assembly_Station : Counter
             if (isTimer)
             {
                 canvas_order.GetComponent<Order>().Set_displayed_timer(child.GetComponent<TMP_Text>());
-                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, -3.5f, -0.2f);
+                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, -3.5f, -0.1f);
                 child.gameObject.GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f, 0.5f);
             } else
             {
-                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, 3.8f, -0.2f);
+                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, 3.8f, -0.1f);
                 child.gameObject.GetComponent<Transform>().localScale = new Vector3(0.3f, 0.3f, 0.3f);
             }
         }
