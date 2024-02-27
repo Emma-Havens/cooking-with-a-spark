@@ -128,7 +128,7 @@ public class Cooking_appliance : Interactable
 
         if (type == Appliance_Type.Fryer)
         {
-            cooking_item.transform.position = transform.position + new Vector3(5, -1, 1);
+            cooking_item.transform.position = transform.position + new Vector3(-4.75f, 1.2f, -1); // MUST CHANGE AS FRYER MOVES
             cooking_item.transform.rotation = Quaternion.Euler(90, 0, 0);
         }
         else if (type == Appliance_Type.Toaster)
