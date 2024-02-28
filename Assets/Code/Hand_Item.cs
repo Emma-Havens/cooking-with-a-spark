@@ -24,20 +24,38 @@ public class Hand_Item : Interactable
 
     public override void Interact()
     {
-        Debug.Log("pickup detected");
-        Potential_pickup();
+        Assembly_Station a;
+
+        if (counter != null)
+        {
+            if (counter.TryGetComponent<Assembly_Station>(out a))
+                a.Interact();
+            else
+                Potential_pickup();
+        }
+        else
+        {
+            Debug.Log("pickup detected");
+            Potential_pickup();
+
+        }
+           
 
     }
 
     // ensures an item disappears from view after it enters player hand
     public void Potential_pickup()
     {
-        if (player_hand.Pick_up_item(this.gameObject))
+        if (player_hand.Pick_up_item(gameObject))
         {
 
             if (counter != null)
+            {
                 counter.TakeFood();
-            counter = null;
+                counter = null;
+                
+            }
+                
         }
     }
 

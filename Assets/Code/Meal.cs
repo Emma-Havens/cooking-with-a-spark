@@ -15,7 +15,7 @@ public class Meal : MonoBehaviour
     Food_type[] order_items;
 
     // references to the food gameobjects in the assembly station
-    GameObject[] ingredients;
+    Food_Item[] ingredients;
 
     // bool array of whether or not the food_item of the same index in the
     // order_items array is already supplied for this meal
@@ -46,28 +46,27 @@ public class Meal : MonoBehaviour
         order = assigned_order.GetComponent<Order>();
         order_items = order.order_items;
         order_items_bool = new bool[order_items.Length];
-        ingredients = new GameObject[order_items.Length];
+        ingredients = new Food_Item[order_items.Length];
         Array.Fill(order_items_bool, false);
     }
 
     // checks whether a supplied ingredient is in the order for the meal
     // gameobject has already been checked to have a food item component
-    public bool Try_add_item(GameObject ingredient)
+    public bool Try_add_item(Food_Item ingredient)
     {
-        Food_Item ing = ingredient.GetComponent<Food_Item>();
 
-        if (ing.state != State.Processed)
+        if (ingredient.state != State.Processed)
         {
             return false;
         }
 
         for (int i = 0; i < order_items.Length; i++)
         {
-            if (order_items[i] == ing.type &&
+            if (order_items[i] == ingredient.type &&
                 order_items_bool[i] != true)
             {
                 Debug.Log("adding " + order_items[i]);
-                ing.Put_Down(Food_Pos(ing.type), station);
+                ingredient.Put_Down(Food_Pos(ingredient.type), station);
                 order_items_bool[i] = true;
                 ingredients[i] = ingredient;
 
@@ -149,7 +148,7 @@ public class Meal : MonoBehaviour
         {
             if (ingredients[i] != null)
             {
-                Destroy(ingredients[i]);
+                Destroy(ingredients[i].gameObject);
             }
         }
     }

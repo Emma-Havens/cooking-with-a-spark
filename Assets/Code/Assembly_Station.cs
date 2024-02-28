@@ -52,7 +52,7 @@ public class Assembly_Station : Counter
             GameObject hand_item = player_hand.In_hand();
             if (hand_item.GetComponent<Food_Item>() != null)
             {
-                AddIngredient(hand_item);
+                AddIngredient(hand_item.GetComponent<Food_Item>());
             }
         }
     }
@@ -117,7 +117,7 @@ public class Assembly_Station : Counter
     }
 
     // adds the food item to the meal if that move is valid
-    private void AddIngredient(GameObject ingredient)
+    private void AddIngredient(Food_Item ingredient)
     {
         bool item_used = false;
         if (meal != null && meal.Try_add_item(ingredient) == true)
