@@ -5,9 +5,10 @@ using TMPro;
 
 public enum Recipe
 {
-    Everything,
-    Full_meal,
-    Starter
+    Double_deck,
+    Extra_fries,
+    Starter,
+    Starter_start
 }
 
 public class Order : MonoBehaviour
@@ -57,20 +58,26 @@ public class Order : MonoBehaviour
     {
         switch (this.recipe)
         {
-            case Recipe.Everything:
+            case Recipe.Double_deck:
                 time_limit = 180;
                 starter_order = false;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
-                                  Food_type.Lettuce, Food_type.Tomato };
+                                  Food_type.Burger, Food_type.Tomato, Food_type.Lettuce };
                 break;
-            case Recipe.Full_meal:
+            case Recipe.Extra_fries:
+                time_limit = 180;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                                  Food_type.Lettuce, Food_type.Fries, Food_type.Fries };
+                break;
+            case Recipe.Starter:
                 time_limit = 210;
                 starter_order = false;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato,
                                   Food_type.Fries };
                 break;
-            case Recipe.Starter:
+            case Recipe.Starter_start:
                 starter_order = true;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato,

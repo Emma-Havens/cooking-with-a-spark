@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Order_Manager : MonoBehaviour
 {
-    public GameObject Everything_burger_prefab;
-    public GameObject Full_meal_prefab;
-    public GameObject Starter_prefab;
+    public GameObject[] prefabs;
 
     // the maximum number of orders a player can be given at a time
     public int max_orders = 4;
@@ -38,6 +36,8 @@ public class Order_Manager : MonoBehaviour
     // assembly station references. There SHOULD be as many stations as max_orders
     Assembly_Station[] assembly_stations;
 
+    System.Random rand = new System.Random();
+
     void Start()
     {
         box_transform = GetComponent<RectTransform>();
@@ -46,8 +46,9 @@ public class Order_Manager : MonoBehaviour
         order_array = new GameObject[max_orders];
         slot_array = new Vector3[max_orders];
         Fill_slot_array();
-        Get_starter_order();
-        //Starter_order_done();
+        //Get_starter_order();
+        Starter_order_done();
+
     }
 
     // used in initialization. Calculates positions on canvas for orders
@@ -70,7 +71,7 @@ public class Order_Manager : MonoBehaviour
 
     void Get_starter_order()
     {
-        Generate_order(Starter_prefab);
+       Generate_order(prefabs[0]);
     }
 
     public void Starter_order_done()
@@ -94,7 +95,7 @@ public class Order_Manager : MonoBehaviour
         {
             orders_full = false;
         }
-        Generate_order(Everything_burger_prefab);
+        Generate_order(prefabs[rand.Next(1, prefabs.Length)]);
         yield return new WaitForSecondsRealtime(wait_time);
         waiting = false;
     }
