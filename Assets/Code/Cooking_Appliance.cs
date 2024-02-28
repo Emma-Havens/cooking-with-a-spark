@@ -66,7 +66,7 @@ public class Cooking_appliance : Interactable
         }
         else if (type == Appliance_Type.Chopper)
         {
-            child1 = transform.GetChild(2).gameObject;
+            child1 = transform.GetChild(1).gameObject;
             child1.SetActive(false);
         }
     }
@@ -139,7 +139,7 @@ public class Cooking_appliance : Interactable
         }
         else if (type == Appliance_Type.Chopper)
         {
-            cooking_item.transform.position = transform.position + new Vector3(0, 0.3f, 0);
+            cooking_item.transform.position = transform.position + new Vector3(0, 0.5f, 0);
             cooking_item.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if (type == Appliance_Type.Stove)
