@@ -43,7 +43,7 @@ public class Hand : MonoBehaviour
         } else
         {
             Debug.Log("item has not been picked up");
-            audio_s.PlayOneShot(no_use_item, .1f);
+            audio_s.PlayOneShot(no_use_item, .3f);
         }
         return pick_up;
     }

@@ -83,6 +83,8 @@ public class Assembly_Station : Counter
         foreach (Transform child in displayed_order.transform)
         {
             String text = child.gameObject.GetComponent<TMP_Text>().text;
+            TMP_FontAsset font = child.gameObject.GetComponent<TMP_Text>().font;
+            float font_size = child.gameObject.GetComponent<TMP_Text>().fontSize;
             bool isTimer = child.gameObject.CompareTag("timer");
             Destroy(child.gameObject.GetComponent<TextMeshProUGUI>());
             yield return new WaitForEndOfFrame();
@@ -91,11 +93,13 @@ public class Assembly_Station : Counter
             child.gameObject.AddComponent<MeshRenderer>();
             child.gameObject.AddComponent<TextMeshPro>();
             child.gameObject.GetComponent<TMP_Text>().text = text;
+            child.gameObject.GetComponent<TMP_Text>().font = font;
+            //child.gameObject.GetComponent<TMP_Text>().fontCo = font_size;
             child.gameObject.GetComponent<TMP_Text>().alignment = TextAlignmentOptions.Center;
             if (isTimer)
             {
                 canvas_order.GetComponent<Order>().Set_displayed_timer(child.GetComponent<TMP_Text>());
-                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, -3.5f, -0.1f);
+                child.gameObject.GetComponent<Transform>().localPosition = new Vector3(0f, -1.5f, -0.05f);
                 child.gameObject.GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f, 0.5f);
             } else
             {
@@ -124,7 +128,7 @@ public class Assembly_Station : Counter
         if (item_used == false)
         {
             Debug.Log("Item was not used");
-            audio_s.PlayOneShot(wrong_item, .1f);
+            audio_s.PlayOneShot(wrong_item, .3f);
         }
     }
 

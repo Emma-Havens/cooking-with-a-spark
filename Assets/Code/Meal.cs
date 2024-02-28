@@ -24,6 +24,7 @@ public class Meal : MonoBehaviour
     // current height of the meal (used for placing next item)
     float meal_height;
     float initial_meal_height;
+    float fry_depth;
 
     // used in Finish to top off burger
     public GameObject bun_prefab;
@@ -35,6 +36,7 @@ public class Meal : MonoBehaviour
     {
         initial_meal_height = transform.position.y + 1.1f;
         meal_height = initial_meal_height + 0.1f;
+        fry_depth = transform.position.z;
     }
 
     // Must be called by Assembly_Station on creation to set order_items
@@ -85,19 +87,41 @@ public class Meal : MonoBehaviour
     {
         Vector3 pos;
 
-        switch (f)
+        switch (order.recipe)
         {
-            case Food_type.Bun:
-                pos = new Vector3(transform.position.x, initial_meal_height, transform.position.z);
-                break;
-            case Food_type.Fries:
-                pos = new Vector3(transform.position.x + 0.6f, initial_meal_height, transform.position.z);
+            case Recipe.Extra_fries:
+                switch (f)
+                {
+                    case Food_type.Bun:
+                        pos = new Vector3(transform.position.x, initial_meal_height, transform.position.z);
+                        break;
+                    case Food_type.Fries:
+                        pos = new Vector3(transform.position.x + 0.6f, initial_meal_height, fry_depth);
+                        fry_depth -= 0.6f;
+                        break;
+                    default:
+                        pos = new Vector3(transform.position.x, meal_height, transform.position.z);
+                        meal_height += 0.1f;
+                        break;
+                }
                 break;
             default:
-                pos = new Vector3(transform.position.x, meal_height, transform.position.z);
-                meal_height += 0.1f;
+                switch (f)
+                {
+                    case Food_type.Bun:
+                        pos = new Vector3(transform.position.x, initial_meal_height, transform.position.z);
+                        break;
+                    case Food_type.Fries:
+                        pos = new Vector3(transform.position.x + 0.6f, initial_meal_height, transform.position.z);
+                        break;
+                    default:
+                        pos = new Vector3(transform.position.x, meal_height, transform.position.z);
+                        meal_height += 0.1f;
+                        break;
+                }
                 break;
         }
+        
 
         return pos;
     }

@@ -113,12 +113,12 @@ public class Cooking_appliance : Interactable
             else
             {
                 Debug.Log("incompatible food");
-                audio_s.PlayOneShot(food_incompatible, .1f);
+                audio_s.PlayOneShot(food_incompatible, .3f);
             }
         }
         else
         {
-            audio_s.PlayOneShot(food_incompatible, .1f);
+            audio_s.PlayOneShot(food_incompatible, .3f);
         }
     }
 
@@ -216,7 +216,7 @@ public class Cooking_appliance : Interactable
 
         if (!already_played_processed && !playing_ruined && !audio_s.isPlaying)
         {
-            audio_s.PlayOneShot(food_cooking, .07f);
+            audio_s.PlayOneShot(food_cooking, .4f);
         }
 
         if (cook_progress >= ruined)
