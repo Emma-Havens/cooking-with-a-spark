@@ -46,8 +46,8 @@ public class Order_Manager : MonoBehaviour
         order_array = new GameObject[max_orders];
         slot_array = new Vector3[max_orders];
         Fill_slot_array();
-        //Get_starter_order();
-        Starter_order_done();
+        Get_starter_order();
+        //Starter_order_done();
 
     }
 

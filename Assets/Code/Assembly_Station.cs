@@ -128,7 +128,7 @@ public class Assembly_Station : Counter
         if (item_used == false)
         {
             Debug.Log("Item was not used");
-            audio_s.PlayOneShot(wrong_item, .1f);
+            audio_s.PlayOneShot(wrong_item, .3f);
         }
     }
 
