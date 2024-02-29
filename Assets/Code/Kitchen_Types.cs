@@ -29,7 +29,9 @@ public class Kitchen_Types : MonoBehaviour
         {Food_type.Bun, Appliance_Type.Toaster},
         {Food_type.Fries, Appliance_Type.Fryer},
         {Food_type.Lettuce, Appliance_Type.Chopper},
-        {Food_type.Tomato, Appliance_Type.Chopper}
+        {Food_type.Tomato, Appliance_Type.Chopper},
+        {Food_type.Bacon, Appliance_Type.Stove},
+        {Food_type.Cheese, Appliance_Type.Chopper}
     };
 }
 

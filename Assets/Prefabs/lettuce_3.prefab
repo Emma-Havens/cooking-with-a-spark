@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 2
-  type: 2
+  type: 3
   nextStage: {fileID: 0}
 --- !u!65 &5643688665424191628
 BoxCollider:

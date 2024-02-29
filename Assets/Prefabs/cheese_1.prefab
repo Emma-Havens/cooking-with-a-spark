@@ -94,5 +94,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  type: 0
+  type: 5
   nextStage: {fileID: 1982929840582940895, guid: 9c53b252f87628042b4692ca25b13fe9, type: 3}

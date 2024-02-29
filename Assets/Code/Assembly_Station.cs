@@ -79,14 +79,15 @@ public class Assembly_Station : Counter
         Sprite order_sprite = displayed_order.GetComponent<Image>().sprite;
         Destroy(displayed_order.GetComponent<Image>());
         Destroy(displayed_order.GetComponent<CanvasRenderer>());
+        Destroy(displayed_order.GetComponent<Order>());
 
         foreach (Transform child in displayed_order.transform)
         {
-            String text = child.gameObject.GetComponent<TMP_Text>().text;
+            string text = child.gameObject.GetComponent<TMP_Text>().text;
             TMP_FontAsset font = child.gameObject.GetComponent<TMP_Text>().font;
-            float font_size = child.gameObject.GetComponent<TMP_Text>().fontSize;
+            //float font_size = child.gameObject.GetComponent<TMP_Text>().fontSize;
             bool isTimer = child.gameObject.CompareTag("timer");
-            Destroy(child.gameObject.GetComponent<TextMeshProUGUI>());
+            DestroyImmediate(child.gameObject.GetComponent<TextMeshProUGUI>());
             yield return new WaitForEndOfFrame();
 
             Destroy(child.gameObject.GetComponent<CanvasRenderer>());

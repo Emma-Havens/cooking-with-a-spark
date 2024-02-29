@@ -42,7 +42,7 @@ public class Order : MonoBehaviour
         if (!starter_order)
         {
             Initialize_timer();
-            Set_timer();
+            //Set_timer();
         }
     }
 
@@ -120,16 +120,11 @@ public class Order : MonoBehaviour
     void Initialize_timer()
     {
         TMP_Text[] list = GetComponentsInChildren<TMP_Text>();
-        TMP_Text text1 = list[0];
-        TMP_Text text2 = list[1];
-        if (text1.gameObject.transform.position.y <
-            text2.gameObject.transform.position.y)
-        {
-            timer = text1;
-        }
-        else
-        {
-            timer = text2;
+        foreach (TMP_Text text in list) {
+            if (text.gameObject.CompareTag("timer"))
+            {
+                timer = text;
+            }
         }
         start_time = Time.time;
     }
