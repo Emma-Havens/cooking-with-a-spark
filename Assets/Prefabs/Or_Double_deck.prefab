@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 17
+  m_fontSizeBase: 17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -358,5 +358,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4389110b6a4954ca78301c0f8974c392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipe: 0
+  recipe: 3
   order_items: 

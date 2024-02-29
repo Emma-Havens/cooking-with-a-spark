@@ -118,5 +118,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 2
-  type: 3
+  type: 4
   nextStage: {fileID: 0}
