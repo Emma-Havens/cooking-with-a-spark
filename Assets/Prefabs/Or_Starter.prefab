@@ -358,5 +358,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4389110b6a4954ca78301c0f8974c392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipe: 2
+  recipe: 7
   order_items: 

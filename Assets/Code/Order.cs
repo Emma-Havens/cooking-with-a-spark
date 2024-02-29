@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public enum Recipe
-{
-    Double_deck,
-    Extra_fries,
-    Starter,
-    Starter_start
-}
-
 public class Order : MonoBehaviour
 {
     // how long player has to complete order in float seconds
@@ -58,20 +50,51 @@ public class Order : MonoBehaviour
     {
         switch (this.recipe)
         {
+            case Recipe.BLT:
+                time_limit = 160;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Bacon,
+                                  Food_type.Lettuce, Food_type.Tomato };
+                break;
+            case Recipe.Breakfast:
+                time_limit = 160;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Bacon,
+                                  Food_type.Cheese, Food_type.Fries };
+                break;
+            case Recipe.Cheeseburger:
+                time_limit = 220;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                                  Food_type.Lettuce, Food_type.Tomato,
+                                  Food_type.Fries, Food_type.Cheese };
+                break;
             case Recipe.Double_deck:
-                time_limit = 180;
+                time_limit = 200;
                 starter_order = false;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Burger, Food_type.Tomato, Food_type.Lettuce };
                 break;
             case Recipe.Extra_fries:
-                time_limit = 180;
+                time_limit = 200;
                 starter_order = false;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Fries, Food_type.Fries };
                 break;
+            case Recipe.Kiddie_Meal:
+                time_limit = 180;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                                  Food_type.Lettuce, Food_type.Cheese, Food_type.Fries };
+                break;
+            case Recipe.Meatlovers:
+                time_limit = 200;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                                  Food_type.Bacon, Food_type.Cheese, Food_type.Fries };
+                break;
             case Recipe.Starter:
-                time_limit = 210;
+                time_limit = 180;
                 starter_order = false;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
                                   Food_type.Lettuce, Food_type.Tomato,
@@ -80,6 +103,13 @@ public class Order : MonoBehaviour
             case Recipe.Starter_start:
                 starter_order = true;
                 order_items = new Food_type[] { Food_type.Bun, Food_type.Burger,
+                                  Food_type.Lettuce, Food_type.Tomato,
+                                  Food_type.Fries };
+                break;
+            case Recipe.Veggie:
+                time_limit = 200;
+                starter_order = false;
+                order_items = new Food_type[] { Food_type.Bun, Food_type.Cheese,
                                   Food_type.Lettuce, Food_type.Tomato,
                                   Food_type.Fries };
                 break;
