@@ -72,7 +72,8 @@ PrefabInstance:
       propertyPath: nextStage
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6152251427860676542, guid: 4cc9580b5efe790409bc339b752c0c26, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

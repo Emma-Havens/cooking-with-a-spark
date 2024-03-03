@@ -27,6 +27,10 @@ public class Order_Manager : MonoBehaviour
 
     // base time to wait between orders
     float wait_time = 70;
+    float wait_time_inc = 5;
+    float wait_time_min = 40;
+    float time_between_inc = 60;
+    float time_since_inc = 0;
 
     // transform of the order box (area where orders are displayed)
     RectTransform box_transform;
@@ -81,6 +85,13 @@ public class Order_Manager : MonoBehaviour
 
     private void Update()
     {
+        time_since_inc += Time.deltaTime;
+        if (time_since_inc > time_between_inc
+            && wait_time - wait_time_inc >= wait_time_min)
+        {
+            wait_time -= wait_time_inc;
+            time_since_inc = 0;
+        }
         if (waiting == false)
         {
             StartCoroutine(Waiting_to_make_order());
