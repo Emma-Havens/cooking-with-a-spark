@@ -169,6 +169,9 @@ public class Order : MonoBehaviour
     // called when order timer runs out
     void Order_timeout()
     {
+        // increment lose condition (3 strikes)
+        FindObjectOfType<Game_Over>().Increase();
+
         // make loudspeaker man mad
         Debug.Log(assembly_station);
         if (assembly_station)
@@ -180,6 +183,10 @@ public class Order : MonoBehaviour
 
     public void Order_fulfillment()
     {
+        // increase score
+        FindObjectOfType<ScoreKeeper>().Increase();
+        //Debug.Log("increasing score: " + FindObjectOfType<ScoreKeeper>().GetScore());
+
         if (starter_order)
         {
             Order_Manager manager = FindAnyObjectByType<Order_Manager>();
