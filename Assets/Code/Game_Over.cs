@@ -10,6 +10,8 @@ public class Game_Over : MonoBehaviour
     private int wrong_orders = 0;
     private RawImage lose_screen;
     private GameObject losescoretext;
+    private TextMeshProUGUI outt = null;
+
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +21,13 @@ public class Game_Over : MonoBehaviour
         lose_screen.enabled = false;
 
 
-        losescoretext = GameObject.Find("Lose Score");
-        losescoretext.SetActive(false);
+        losescoretext = GameObject.Find("LoseScore");
+        losescoretext.TryGetComponent<TextMeshProUGUI>(out outt);
+        if (outt)
+        {
+            outt.enabled = false;
+        }
+        //losescoretext.SetActive(false);
 
     }
 
@@ -39,7 +46,7 @@ public class Game_Over : MonoBehaviour
         AudioListener.pause = true;
         Time.timeScale = 0.0f;
         lose_screen.enabled = true;
-        losescoretext.SetActive(true);
+        outt.enabled = true;
 
     }
 

@@ -20,7 +20,11 @@ public class ScoreKeeper : MonoBehaviour
     {
         score = 0;
         scoretext = transform.GetChild(1).gameObject;
-        losescoretext = GameObject.Find("Lose Score");
+        losescoretext = GameObject.Find("LoseScore");
+        if (losescoretext == null )
+        {
+            Debug.Log("hiiiiiiiiiiiiiiiiii");
+        }
         //losescoretext.SetActive(false);
     }
 
