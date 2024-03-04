@@ -25,10 +25,23 @@ public class Start_Screen : MonoBehaviour
                 RawImage start_screen;
                 start = true;
                 Time.timeScale = 1.0f;
+                AudioListener.pause = false;
                 TryGetComponent<RawImage>(out start_screen);
                 start_screen.enabled = false;
-        }
+            }   
 
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                RawImage start_screen;
+                start = false;
+                Time.timeScale = 0.0f;
+                AudioListener.pause = true;
+                TryGetComponent<RawImage>(out start_screen);
+                start_screen.enabled = true;
+            }
         }
     }
 }
