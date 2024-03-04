@@ -11,12 +11,17 @@ public class ScoreKeeper : MonoBehaviour
 
     private GameObject scoretext;
 
+    private GameObject losescoretext;
+    private TextMeshProUGUI outt = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         scoretext = transform.GetChild(1).gameObject;
+        losescoretext = GameObject.Find("Lose Score");
+        //losescoretext.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,9 +41,15 @@ public class ScoreKeeper : MonoBehaviour
         {
             scoretext.GetComponent<TextMeshPro>().text = score.ToString();
         }
+
+        losescoretext.TryGetComponent<TextMeshProUGUI>(out outt);
+        if (outt)
+        {
+            outt.text = "Score: " + score.ToString();
+        }
     }
 
-    public int GetScore()
+        public int GetScore()
     {
         return score;
     }

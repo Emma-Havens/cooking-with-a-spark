@@ -8,14 +8,19 @@ using UnityEngine.UI;
 public class Game_Over : MonoBehaviour
 {
     private int wrong_orders = 0;
-    private RawImage start_screen;
+    private RawImage lose_screen;
+    private GameObject losescoretext;
 
     // Start is called before the first frame update
     void Start()
     {
         wrong_orders = 0;
-        TryGetComponent<RawImage>(out start_screen);
-        start_screen.enabled = false;
+        TryGetComponent<RawImage>(out lose_screen);
+        lose_screen.enabled = false;
+
+
+        losescoretext = GameObject.Find("Lose Score");
+        losescoretext.SetActive(false);
 
     }
 
@@ -33,7 +38,9 @@ public class Game_Over : MonoBehaviour
 
         AudioListener.pause = true;
         Time.timeScale = 0.0f;
-        start_screen.enabled = true;
+        lose_screen.enabled = true;
+        losescoretext.SetActive(true);
+
     }
 
     public void Increase()
