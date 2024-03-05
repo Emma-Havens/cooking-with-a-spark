@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Breaker : MonoBehaviour
+public class Breaker : Interactable
 {
     public AudioClip flip_breaker;
     public AudioClip breaker_error;
@@ -12,9 +12,14 @@ public class Breaker : MonoBehaviour
     public int max_load = 3;
     int current_load = 0;
 
+    LoadKeeper loadKeeper;
+
     private void Start()
     {
         audio_s = GetComponent<AudioSource>();
+        GetComponent<Renderer>().material.color = Color.red;
+
+        loadKeeper = FindObjectOfType<LoadKeeper>().GetComponent<LoadKeeper>();
     }
 
     //called by switches
@@ -34,7 +39,20 @@ public class Breaker : MonoBehaviour
             Debug.Log("Load increased");
             current_load++;
             audio_s.PlayOneShot(flip_breaker);
+
+            loadKeeper.Increase();
             return true;
+        }
+    }
+
+    public override void Interact()
+    {
+        foreach (var breaker_switch in FindObjectsOfType<Breaker_Switch>())
+        {
+            if (breaker_switch.on)
+            {
+                breaker_switch.TurnOff();
+            }
         }
     }
 
@@ -43,6 +61,8 @@ public class Breaker : MonoBehaviour
         Debug.Log("Load decreased");
         current_load--;
         audio_s.PlayOneShot(flip_breaker);
+
+        loadKeeper.Decrease();
     }
 
     public int get_current_load()
