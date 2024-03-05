@@ -6,6 +6,7 @@ TagManager:
   tags:
   - no_highlight
   - timer
+  - Power_Icon
   layers:
   - Default
   - TransparentFX

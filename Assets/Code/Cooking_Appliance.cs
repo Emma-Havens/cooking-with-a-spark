@@ -12,10 +12,12 @@ public class Cooking_appliance : Interactable
     public AudioClip food_cooking;
     public AudioClip food_incompatible;
 
+    Transform power_icon;
+    Renderer power_ren;
 
     //whether the appliance is plugged in or not
     //when electricity is implemented, the default should be false
-    public bool is_powered = false;
+    bool is_powered = false;
 
     Food_Item cooking_item = null;
 
@@ -46,6 +48,10 @@ public class Cooking_appliance : Interactable
     {
         player_hand = FindObjectOfType<Hand>().GetComponent<Hand>();
         audio_s = GetComponent<AudioSource>();
+
+        power_icon = transform.Find("Power_Icon");
+        power_ren = power_icon.GetComponent<Renderer>();
+        power_ren.enabled = false;
 
         if (type == Appliance_Type.Fryer)
         {
@@ -258,4 +264,16 @@ public class Cooking_appliance : Interactable
         }
     }
 
+
+    public void PowerOn()
+    {
+        is_powered = true;
+        power_ren.enabled = true;
+    }
+
+    public void PowerOff()
+    {
+        is_powered = false;
+        power_ren.enabled = false;
+    }
 }

@@ -30,7 +30,7 @@ public class Breaker_Switch : Interactable
             //checks if can add load, and updates current load if yes
             if (breaker.add_load())
             {
-                appliance.is_powered = true;
+                appliance.PowerOn();
                 on = true;
                 AnimateOn();
             }
@@ -45,7 +45,7 @@ public class Breaker_Switch : Interactable
     public void TurnOff()
     {
         breaker.remove_load();
-        appliance.is_powered = false;
+        appliance.PowerOff();
 
         AnimateOff();
         on = false;
