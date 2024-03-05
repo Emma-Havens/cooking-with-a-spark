@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
         Vector3 forward = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
         Vector3 right = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
-        Vector3 clamped = Vector3.ClampMagnitude((right * horizontal) + (forward * vertical), .15f);
+        Vector3 clamped = Vector3.ClampMagnitude((right * horizontal) + (forward * vertical), MoveSpeed * Time.fixedDeltaTime);
 
         playerRB.MoveRotation(Quaternion.identity);
         playerRB.MovePosition(transform.position + clamped);
