@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Game_Over : MonoBehaviour
 {
-    private int wrong_orders = 0;
+    public int wrong_orders = 0;
     private RawImage lose_screen;
     private GameObject losescoretext;
     private TextMeshProUGUI outt = null;
