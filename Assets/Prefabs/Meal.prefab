@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bun_prefab: {fileID: 8113860419827784608, guid: 02ec896957b854ad3a1ffbc29c3509cc, type: 3}
+  tray_prefab: {fileID: 17771136070405540, guid: cc76650ebf8354c4c80b8802617d93b4, type: 3}

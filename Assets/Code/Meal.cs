@@ -28,6 +28,9 @@ public class Meal : MonoBehaviour
 
     // used in Finish to top off burger
     public GameObject bun_prefab;
+    public GameObject tray_prefab;
+
+    private GameObject tray;
 
     // used to place food_item objects on
     private Assembly_Station station;
@@ -37,6 +40,10 @@ public class Meal : MonoBehaviour
         initial_meal_height = transform.position.y + 1.1f;
         meal_height = initial_meal_height + 0.1f;
         fry_depth = transform.position.z;
+
+        Vector3 trayPos = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
+
+        tray = Instantiate(tray_prefab, trayPos, Quaternion.identity);
     }
 
     // Must be called by Assembly_Station on creation to set order_items
@@ -144,6 +151,9 @@ public class Meal : MonoBehaviour
 
     private void OnDestroy()
     {
+
+        Destroy(tray);
+
         for (int i = 0; i < ingredients.Length; i++)
         {
             if (ingredients[i] != null)
