@@ -44,14 +44,9 @@ public class Progress_Bar : MonoBehaviour
         bar.transform.localScale = new Vector3(val , 1, 1);
         bar.transform.localPosition = new Vector3 ((1.0f-val) * 5.0f, 0.01f, 0.0f);
 
-        if (prog < processed / 2.0f)
+        if (prog < processed)
         {
-            bar.GetComponent<MeshRenderer>().material.color = new Color(1 + 0.2f, val * 2 - 0.2f, 0);
-            text.text = (Mathf.RoundToInt(val * 100)).ToString() + "%";
-        }
-        else if (prog < processed)
-        {
-            bar.GetComponent<MeshRenderer>().material.color = new Color((1 - val) * 2 + 0.2f, 1 - 0.2f, 0);
+            bar.GetComponent<MeshRenderer>().material.color = new Color(1, val, 0);
             text.text = (Mathf.RoundToInt(val * 100)).ToString() + "%";
         }
         else if (prog < ruined)
